@@ -27,14 +27,14 @@ public class P_Movement : MonoBehaviour
             speed = playerSpeed;
         }
 
-        Vector3 up = Camera.main.transform.up;
-        Vector3 right = Camera.main.transform.right;
-        up.y = 0;
+        Vector3 forward = transform.forward;
+        Vector3 right = transform.right;
+        forward.y = 0;
         right.y = 0;
-        up = up.normalized;
+        forward = forward.normalized;
         right = right.normalized;
 
-        Vector3 forwardReletiveVerticalInput = playerVerticalInput * up * Time.deltaTime * speed;
+        Vector3 forwardReletiveVerticalInput = playerVerticalInput * forward * Time.deltaTime * speed;
         Vector3 rightReletiveVerticalInput = playerHorizontalInput * right * Time.deltaTime * speed;
 
         Vector3 cameraRelativeMovement = forwardReletiveVerticalInput + rightReletiveVerticalInput;
