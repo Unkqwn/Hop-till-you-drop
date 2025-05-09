@@ -32,7 +32,7 @@ public class P_Shooting : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
             GameObject bullet = Instantiate(bulletPrefab, transform.position, transform.rotation);
-            bullet.layer = gameObject.layer;
+            bullet.layer = LayerMask.NameToLayer("P_bullet");
         }
     }
 }

@@ -48,6 +48,8 @@ public class EnemyAttack : MonoBehaviour
             GameObject tmpObj = Instantiate(projectilePrefab, startPoint, Quaternion.identity);
             tmpObj.GetComponent<Rigidbody>().velocity = new Vector3(projectileMoveDirection.x, 0, projectileMoveDirection.y);
 
+            tmpObj.gameObject.layer = LayerMask.NameToLayer("E_bullet");
+
             angle += angleStep;
         }
     }
