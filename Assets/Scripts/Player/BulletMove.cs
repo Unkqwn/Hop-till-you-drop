@@ -18,4 +18,10 @@ public class BulletMove : MonoBehaviour
         Vector3 move = forward * Time.deltaTime * speed;
         this.transform.Translate(move, Space.World);
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        Destroy(this.gameObject);
+        Debug.Log("Hey there");
+    }
 }
