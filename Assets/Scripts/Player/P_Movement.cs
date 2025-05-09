@@ -27,8 +27,8 @@ public class P_Movement : MonoBehaviour
             speed = playerSpeed;
         }
 
-        Vector3 forward = transform.forward;
-        Vector3 right = transform.right;
+        Vector3 forward = Camera.main.transform.up;
+        Vector3 right = Camera.main.transform.right;
         forward.y = 0;
         right.y = 0;
         forward = forward.normalized;
