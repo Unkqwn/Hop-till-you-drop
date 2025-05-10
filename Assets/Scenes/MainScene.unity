@@ -357,8 +357,8 @@ MonoBehaviour:
   BossObject: {fileID: 8616656189429311647, guid: d297da5c9a724a84d8130722f9a8263a, type: 3}
   newEnemy: {fileID: 8616656189429311647, guid: d297da5c9a724a84d8130722f9a8263a, type: 3}
   playerToFollow: {fileID: 1524993659}
-  SpawnDelay: 0
-  SpawnRate: 0
+  SpawnDelay: 2
+  SpawnRate: 5
   MinRange: 0
   MaxRange: 10
   BossSpawnRate: 5
