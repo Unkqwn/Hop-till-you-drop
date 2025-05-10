@@ -59,7 +59,7 @@ public class EnemySpawner : MonoBehaviour
                 break;
         }
 
-        spawnPostion = new Vector3(randomXposition, 1f, randomYposition );
+        spawnPostion = new Vector3(randomXposition, -10f, randomYposition );
         newEnemy = Instantiate(BossObject, spawnPostion, Quaternion.identity);
 
     }
