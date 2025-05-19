@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 6348467479889919423}
   - component: {fileID: 6489452740236060987}
   - component: {fileID: 8226090514870903426}
-  - component: {fileID: 2386683337822584609}
   - component: {fileID: 8569306620713769071}
   - component: {fileID: -5116610424079417870}
   m_Layer: 7
@@ -31,7 +30,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 3.2026172, z: 0.17}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
+  m_LocalScale: {x: 0.5, y: 1, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -86,19 +85,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &2386683337822584609
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3111969935523809753}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d26b40a68aeadfb4488043b873edc5cc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 10
 --- !u!135 &8569306620713769071
 SphereCollider:
   m_ObjectHideFlags: 0

@@ -1,11 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-    public Transform followPlayer;
-    public Vector3 playerOffset;
+    [SerializeField] private Transform player;
+    [SerializeField] private Vector3 offset;
     public float moveSpeed = 5;
 
     private Transform cameraTransform;
@@ -19,7 +17,7 @@ public class CameraController : MonoBehaviour
     // Update is called once per frame
     void LateUpdate()
     {
-        if (followPlayer != null)
-            cameraTransform.position = Vector3.Lerp(cameraTransform.position, followPlayer.position + playerOffset, moveSpeed * Time.deltaTime);
+        if (player != null)
+            cameraTransform.position = Vector3.Lerp(cameraTransform.position, player.position + offset, moveSpeed * Time.deltaTime);
     }
 }

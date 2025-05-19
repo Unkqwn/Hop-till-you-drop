@@ -1,8 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class P_Health : MonoBehaviour
+public class PlayerHealth : MonoBehaviour
 {
     [SerializeField] private float health;
     void Update()
