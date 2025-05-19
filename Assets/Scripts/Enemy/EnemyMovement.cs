@@ -11,16 +11,19 @@ public class EnemyMovement : MonoBehaviour
     public GameObject projectilePrefab;
     public GameObject actualSpawnPoint;
 
+
     [Header("Private Variables")]
     private Vector3 startPoint;
     private const float radius = 1f;
+    private bool higherBulletCount;
 
-    enum AIState {
+    enum AIState
+    {
         Idle, Patrolling, Chasing, Attacking
     }
 
     [SerializeField] private Transform[] Waypoints;
-    [SerializeField] private float WaitAtPoint = 2f ;
+    [SerializeField] private float WaitAtPoint = 2f;
 
     private int CurrentWaypoint;
     private float WaitCounter;
@@ -39,13 +42,14 @@ public class EnemyMovement : MonoBehaviour
     [SerializeField] private float AttackRange;
 
     private GameObject player;
-   
+
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
         player = GameObject.FindGameObjectWithTag("Player");
 
         WaitCounter = WaitAtPoint;
+        higherBulletCount = false;
     }
 
 
@@ -69,7 +73,7 @@ public class EnemyMovement : MonoBehaviour
                 else
                 {
                     CurrentState = AIState.Patrolling;
-                  
+
                 }
 
                 if (distanceToPlayer <= ChaseRange)
@@ -77,11 +81,11 @@ public class EnemyMovement : MonoBehaviour
                     CurrentState = AIState.Chasing;
                 }
 
-                    break;
+                break;
 
-                case AIState.Patrolling:
+            case AIState.Patrolling:
 
-                
+
 
                 if (distanceToPlayer <= ChaseRange)
                 {
@@ -89,32 +93,33 @@ public class EnemyMovement : MonoBehaviour
                 }
 
 
-                    break;
+                break;
 
-                case AIState.Chasing:
+            case AIState.Chasing:
 
-                if (distanceToPlayer <= AttackRange) 
+                if (distanceToPlayer <= AttackRange)
                 {
                     CurrentState = AIState.Attacking;
                 }
 
-                
+
                 if (distanceToPlayer > ChaseRange)
                 {
                     agent.isStopped = true;
                     agent.velocity = Vector3.zero;
-                   
-                } else
+
+                }
+                else
                 {
                     agent.SetDestination(player.transform.position);
                     agent.isStopped = false;
                 }
 
-                    break;
+                break;
 
-                case AIState.Attacking:
-                AttackPlayer();
+            case AIState.Attacking:
                 agent.SetDestination(player.transform.position);
+                AttackPlayer();
                 break;
 
         }
@@ -125,14 +130,43 @@ public class EnemyMovement : MonoBehaviour
     {
         transform.LookAt(player.transform.position);
 
-        
+
 
 
         if (!alreadyAttacked)
         {
 
-            Rigidbody rb = Instantiate(bullet, transform.position, Quaternion.identity).GetComponent<Rigidbody>();
-            rb.AddForce(transform.forward * 32f, ForceMode.Impulse);
+            //SpawnProjectiles(numberOfProjectiles);
+
+            if (higherBulletCount == true)
+            {
+               
+                numberOfProjectiles = 2;
+                higherBulletCount = false;
+            }
+            else
+            {
+                
+                numberOfProjectiles = 1;
+                higherBulletCount = true;
+            }
+
+           
+            Debug.Log("numberofprojectiles: " + numberOfProjectiles);
+            Vector3 shootingDir1 = new Vector3(0.5f, 0, 0).normalized;
+            Vector3 shootingDir2 = new Vector3(-0.5f, 0, 0).normalized;
+            
+            //bullet 1
+            Rigidbody rb = Instantiate(bullet, transform.position, Quaternion.Euler(0, 10, 0)).GetComponent<Rigidbody>();
+
+            //rb.transform.Rotate(Vector3.up, 10);
+            rb.AddForce(rb.transform.forward  * 10f, ForceMode.Impulse);
+
+            //Rigidbody rb2 = Instantiate(bullet, transform.position, Quaternion.identity).GetComponent<Rigidbody>();
+            //rb2.AddForce(transform.forward * 10f, ForceMode.Impulse);
+
+            //Rigidbody rb3 = Instantiate(bullet, transform.position, Quaternion.identity).GetComponent<Rigidbody>();
+            //rb3.AddForce((transform.forward + shootingDir2) * 10f, ForceMode.Impulse);
 
             alreadyAttacked = true;
             Invoke(nameof(ResetAttack), timeBetweenAttacks);
@@ -141,27 +175,37 @@ public class EnemyMovement : MonoBehaviour
 
     private void ResetAttack()
     {
-        alreadyAttacked  = false;
+        alreadyAttacked = false;
     }
 
     private void SpawnProjectiles(int _numberOfProjectiles)
     {
         float angleStep = 360f / _numberOfProjectiles;
-        float angle = 1f;
+        float angle = 0f;
 
         for (int i = 0; i < _numberOfProjectiles; i++)
         {
-            float projectileDirXPosition = startPoint.x + Mathf.Sin((angle * Mathf.PI) / 180);
-            float projectileDirYPosition = startPoint.z + Mathf.Cos((angle * Mathf.PI) / 180);
+            float projectileDirXPosition = startPoint.x + Mathf.Sin((angle * Mathf.PI) / 180) * radius;
+            float projectileDirYPosition = startPoint.z + Mathf.Cos((angle * Mathf.PI) / 180) * radius;
 
             Vector3 projectileVector = new Vector3(projectileDirXPosition, 0, projectileDirYPosition);
             Vector3 projectileMoveDirection = (projectileVector - startPoint).normalized * projectileSpeed;
 
-            GameObject tmpObj = Instantiate(projectilePrefab, startPoint, Quaternion.identity);
-            tmpObj.GetComponent<Rigidbody>().velocity = new Vector3(projectileMoveDirection.x, 0, projectileMoveDirection.y);
+            GameObject tmpObj = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
+            tmpObj.GetComponent<Rigidbody>().velocity = new Vector3(projectileMoveDirection.x, 0, projectileMoveDirection.z);
+            tmpObj.gameObject.layer = LayerMask.NameToLayer("E_bullet");
+            Destroy(tmpObj, 5f);
+
+
+
 
             angle += angleStep;
+
+
+
         }
+
+        
     }
 
     private void DoSpawnProjectiles()
@@ -169,5 +213,6 @@ public class EnemyMovement : MonoBehaviour
         SpawnProjectiles(numberOfProjectiles);
     }
 
-   
+
+
 }
