@@ -4,20 +4,18 @@ public class CameraController : MonoBehaviour
 {
     [SerializeField] private Transform player;
     [SerializeField] private Vector3 offset;
-    public float moveSpeed = 5;
+    [SerializeField] private float followSpeed = 0.3f;
 
-    private Transform cameraTransform;
+    private Vector3 velocity = Vector3.zero;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        cameraTransform = transform;
-    }
-
-    // Update is called once per frame
-    void LateUpdate()
+    void Update()
     {
         if (player != null)
-            cameraTransform.position = Vector3.Lerp(cameraTransform.position, player.position + offset, moveSpeed * Time.deltaTime);
+        {
+            Vector3 cameraPosition = player.position + offset;
+
+            transform.position = Vector3.SmoothDamp(transform.position, cameraPosition, ref velocity, followSpeed);
+            transform.LookAt(player);
+        }
     }
 }
