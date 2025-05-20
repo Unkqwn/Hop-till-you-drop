@@ -1,42 +1,25 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
-    [SerializeField] private float playerSpeed = 10f;
+    [SerializeField] private float speed;
+    private Vector2 move;
 
-    private void FixedUpdate()
+    public void OnMove(InputAction.CallbackContext context)
     {
-        Movement();
+        move = context.ReadValue<Vector2>();
     }
 
-    private void Movement()
+    void Update()
     {
-        float speed;
-        float xInput = Input.GetAxis("Horizontal");
-        float zInput = Input.GetAxis("Vertical");
+        movePlayer();
+    }
 
-        // Changes the speed of the player when they aren't going straight
-        if (zInput != 0 && xInput != 0)
-        {
-            speed = playerSpeed * 0.66f;
-        }
-        else
-        {
-            speed = playerSpeed;
-        }
-        
-        // Makes the movement rely on the camera rotation instead of player rotation
-        Vector3 forward = Camera.main.transform.up;
-        Vector3 right = Camera.main.transform.right;
-        forward.y = 0;
-        right.y = 0;
-        forward = forward.normalized;
-        right = right.normalized;
+    public void movePlayer()
+    {
+        Vector3 movement = new Vector3(move.x, 0, move.y);
 
-        Vector3 forwardReletiveVerticalInput = zInput * forward * Time.deltaTime * speed;
-        Vector3 rightReletiveVerticalInput = xInput * right * Time.deltaTime * speed;
-
-        Vector3 cameraRelativeMovement = forwardReletiveVerticalInput + rightReletiveVerticalInput;
-        this.transform.Translate(cameraRelativeMovement, Space.World);
+        transform.Translate(movement * speed * Time.deltaTime, Space.World);
     }
 }
