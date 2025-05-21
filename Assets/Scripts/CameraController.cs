@@ -1,25 +1,21 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-    public Transform followPlayer;
-    public Vector3 playerOffset;
-    public float moveSpeed = 5;
+    [SerializeField] private Transform player;
+    [SerializeField] private Vector3 offset;
+    [SerializeField] private float followSpeed = 0.3f;
 
-    private Transform cameraTransform;
+    private Vector3 velocity = Vector3.zero;
 
-    // Start is called before the first frame update
-    void Start()
+    void Update()
     {
-        cameraTransform = transform;
-    }
+        if (player != null)
+        {
+            Vector3 cameraPosition = player.position + offset;
 
-    // Update is called once per frame
-    void LateUpdate()
-    {
-        if (followPlayer != null)
-            cameraTransform.position = Vector3.Lerp(cameraTransform.position, followPlayer.position + playerOffset, moveSpeed * Time.deltaTime);
+            transform.position = Vector3.SmoothDamp(transform.position, cameraPosition, ref velocity, followSpeed);
+            transform.LookAt(player);
+        }
     }
 }

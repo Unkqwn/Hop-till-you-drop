@@ -7,6 +7,7 @@ public class PlayerHealth : MonoBehaviour
     {
         if (health <= 0)
         {
+            Time.timeScale = 0f;
             Destroy(this.gameObject);
         }
     }
@@ -16,6 +17,7 @@ public class PlayerHealth : MonoBehaviour
         if (other.gameObject.layer == 9)
         {
             health -= 1f;
+            Destroy(other);
         }
     }
 }
