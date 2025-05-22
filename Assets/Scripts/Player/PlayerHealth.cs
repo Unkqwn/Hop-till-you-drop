@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 public class PlayerHealth : MonoBehaviour
 {
-    [SerializeField] private float health;
+    public float health;
 
     [SerializeField] private GameObject heartPrefab;
     [SerializeField] private GameObject heartParent;

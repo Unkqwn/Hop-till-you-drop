@@ -13,7 +13,7 @@ public class EnemyAttack : MonoBehaviour
 
     [Header("Private Variables")]
     private Vector3 startPoint;
-    private const float radius = 1f;
+    private const float radius = 5f;
 
     // Start is called before the first frame update
     void Start()
@@ -35,22 +35,23 @@ public class EnemyAttack : MonoBehaviour
     private void SpawnProjectiles(int _numberOfProjectiles)
     {
         float angleStep = 360f / _numberOfProjectiles;
-        float angle = 1f;
+        float angle = 0f;
 
         for (int i = 0; i < _numberOfProjectiles; i++) 
         {
-            float projectileDirXPosition = startPoint.x + Mathf.Sin((angle * Mathf.PI) / 180);
-            float projectileDirYPosition = startPoint.z + Mathf.Cos((angle * Mathf.PI) / 180);
+            float projectileDirXPosition = startPoint.x + Mathf.Sin((angle * Mathf.PI) / 180) * radius;
+            float projectileDirYPosition = startPoint.z + Mathf.Cos((angle * Mathf.PI) / 180) * radius;
 
-            Vector3 projectileVector = new Vector3(projectileDirXPosition, 0, projectileDirYPosition);
+            Vector3 projectileVector = new Vector3(projectileDirXPosition,0,projectileDirYPosition);
             Vector3 projectileMoveDirection = (projectileVector - startPoint).normalized * projectileSpeed;
 
             GameObject tmpObj = Instantiate(projectilePrefab, startPoint, Quaternion.identity);
-            tmpObj.GetComponent<Rigidbody>().velocity = new Vector3(projectileMoveDirection.x, 0, projectileMoveDirection.y);
+            tmpObj.GetComponent<Rigidbody>().velocity = new Vector3(projectileMoveDirection.x,0,projectileMoveDirection.z);
 
             tmpObj.gameObject.layer = LayerMask.NameToLayer("E_bullet");
 
             angle += angleStep;
+            
         }
     }
 }
