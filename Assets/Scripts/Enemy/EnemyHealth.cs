@@ -1,8 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class E_Health : MonoBehaviour
+public class EnemyHealth : MonoBehaviour
 {
     [SerializeField] private float health;
     void Update()
@@ -17,7 +15,8 @@ public class E_Health : MonoBehaviour
     {
         if (other.gameObject.layer == 7)
         {
-            health -= 1f;
+            float damage = other.GetComponent<Bullet>().bulletDamage;
+            health -= damage;
         }
     }
 }

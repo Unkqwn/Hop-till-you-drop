@@ -79,15 +79,47 @@ public class PlayerShooting : MonoBehaviour
             }
         }
     }
-    public void Shoot()
+    public void Shoot(InputAction.CallbackContext context)
     {
-        GameObject bullet = Instantiate(weapon.prefab, transform.position, transform.rotation);
-        bullet.layer = LayerMask.NameToLayer("P_bullet");
-        Rigidbody rb = bullet.GetComponent<Rigidbody>();
-        rb.AddForce(transform.forward * weapon.bulletSpeed, ForceMode.Impulse);
-        Destroy(bullet, 5f);
-        ammoCount--;
-
+        if (context.started)
+        {
+            Debug.Log("Action has started");
+        }
+        else if (context.performed)
+        {
+            if (isPC)
+            {
+                if (Mouse.current.leftButton.wasPressedThisFrame)
+                {
+                    GameObject projectile = Instantiate(weapon.prefab, transform.position, transform.rotation);
+                    Rigidbody rb = projectile.GetComponent<Rigidbody>();
+                    Bullet bullet = projectile.GetComponent<Bullet>();
+                    projectile.layer = LayerMask.NameToLayer("P_bullet");
+                    bullet.bulletDamage = weapon.damage;
+                    rb.AddForce(transform.forward * weapon.bulletSpeed, ForceMode.Impulse);
+                    Destroy(projectile, 5f);
+                    ammoCount--;
+                }
+            }
+            else
+            {
+                if (Gamepad.current.rightTrigger.wasPressedThisFrame)
+                {
+                    GameObject projectile = Instantiate(weapon.prefab, transform.position, transform.rotation);
+                    Rigidbody rb = projectile.GetComponent<Rigidbody>();
+                    Bullet bullet = projectile.GetComponent<Bullet>();
+                    projectile.layer = LayerMask.NameToLayer("P_bullet");
+                    bullet.bulletDamage = weapon.damage;
+                    rb.AddForce(transform.forward * weapon.bulletSpeed, ForceMode.Impulse);
+                    Destroy(projectile, 5f);
+                    ammoCount--;
+                }
+            }
+        }
+        else if (context.canceled)
+        {
+            Debug.Log("Action was cancelled");
+        }
     }
 
     private void Reload()

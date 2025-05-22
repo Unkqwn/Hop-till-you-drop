@@ -8,19 +8,16 @@ public class PlayerHealth : MonoBehaviour
 
     [SerializeField] private GameObject heartPrefab;
     [SerializeField] private GameObject heartParent;
-    [SerializeField] private Sprite emptyHeart;
     [SerializeField] private Sprite fullHeart;
+    [SerializeField] private Sprite emptyHeart;
     [SerializeField] private List<Image> heartImage = new List<Image>();
 
     private void Start()
     {
-        if (health != null)
+        for (int i = 0; i < health; i++)
         {
-            for (int i = 0; i < health; i++)
-            {
-                GameObject heart = Instantiate(heartPrefab, heartParent.transform);
-                heartImage.Add(heart.GetComponent<Image>());
-            }
+            GameObject heart = Instantiate(heartPrefab, heartParent.transform);
+            heartImage.Add(heart.GetComponent<Image>());
         }
     }
 
