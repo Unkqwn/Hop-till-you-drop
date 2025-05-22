@@ -14,7 +14,7 @@ public class EnemyMovement : MonoBehaviour
 
     [Header("Private Variables")]
     private Vector3 startPoint;
-    private const float radius = 1f;
+    private const float radius = 5f;
     private bool higherBulletCount;
 
     enum AIState
@@ -141,13 +141,13 @@ public class EnemyMovement : MonoBehaviour
             if (higherBulletCount == true)
             {
                
-                numberOfProjectiles = 2;
+                numberOfProjectiles = 10;
                 higherBulletCount = false;
             }
             else
             {
                 
-                numberOfProjectiles = 1;
+                numberOfProjectiles = 8;
                 higherBulletCount = true;
             }
 
@@ -155,12 +155,13 @@ public class EnemyMovement : MonoBehaviour
             Debug.Log("numberofprojectiles: " + numberOfProjectiles);
             Vector3 shootingDir1 = new Vector3(0.5f, 0, 0).normalized;
             Vector3 shootingDir2 = new Vector3(-0.5f, 0, 0).normalized;
-            
+
             //bullet 1
             Rigidbody rb = Instantiate(bullet, transform.position, Quaternion.Euler(0, 10, 0)).GetComponent<Rigidbody>();
 
-            //rb.transform.Rotate(Vector3.up, 10);
-            rb.AddForce(rb.transform.forward  * 10f, ForceMode.Impulse);
+            ////rb.transform.Rotate(Vector3.up, 10);
+            rb.AddForce(transform.forward * 10f, ForceMode.Impulse);
+            Destroy(rb, 5f);
 
             //Rigidbody rb2 = Instantiate(bullet, transform.position, Quaternion.identity).GetComponent<Rigidbody>();
             //rb2.AddForce(transform.forward * 10f, ForceMode.Impulse);
@@ -191,14 +192,10 @@ public class EnemyMovement : MonoBehaviour
             Vector3 projectileVector = new Vector3(projectileDirXPosition, 0, projectileDirYPosition);
             Vector3 projectileMoveDirection = (projectileVector - startPoint).normalized * projectileSpeed;
 
-            GameObject tmpObj = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
+            GameObject tmpObj = Instantiate(projectilePrefab, startPoint, Quaternion.identity);
             tmpObj.GetComponent<Rigidbody>().velocity = new Vector3(projectileMoveDirection.x, 0, projectileMoveDirection.z);
             tmpObj.gameObject.layer = LayerMask.NameToLayer("E_bullet");
             Destroy(tmpObj, 5f);
-
-
-
-
             angle += angleStep;
 
 

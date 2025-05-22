@@ -63,10 +63,7 @@ public class EnemySpawner : MonoBehaviour
 
 
         Vector3 pizza = playerToFollow.transform.position + Random.insideUnitSphere.normalized * 20;
-
-
-
-
+        pizza.y = 0;
         newEnemy = Instantiate(BossObject, pizza, Quaternion.identity);
 
     }
