@@ -34,7 +34,6 @@ public class EnemySpawner : MonoBehaviour
     void Update()
     {
         transform.position = playerToFollow.transform.position;
-        
     }
 
     private void SpawnNewEnemy()

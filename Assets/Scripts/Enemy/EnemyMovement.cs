@@ -161,7 +161,7 @@ public class EnemyMovement : MonoBehaviour
 
             ////rb.transform.Rotate(Vector3.up, 10);
             rb.AddForce(transform.forward * 10f, ForceMode.Impulse);
-            Destroy(rb, 5f);
+            Destroy(rb.gameObject, 5f);
 
             //Rigidbody rb2 = Instantiate(bullet, transform.position, Quaternion.identity).GetComponent<Rigidbody>();
             //rb2.AddForce(transform.forward * 10f, ForceMode.Impulse);
