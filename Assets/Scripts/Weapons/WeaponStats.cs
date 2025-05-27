@@ -6,7 +6,7 @@ using UnityEngine;
 public class WeaponStats : ScriptableObject
 {
     public GameObject prefab;
-    public int maxAmmo;
+    public int maxMagazine;
     public float damage;
     public float bulletSpeed;
     public float fireRate;
