@@ -22,7 +22,7 @@ public class PlayerShooting : MonoBehaviour
 
     private void Start()
     {
-        ammoCount = weapon.maxAmmo;
+        ammoCount = weapon.maxMagazine;
     }
 
     private void Update()
@@ -81,44 +81,30 @@ public class PlayerShooting : MonoBehaviour
     }
     public void Shoot(InputAction.CallbackContext context)
     {
-        if (context.started)
-        {
-            Debug.Log("Action has started");
-        }
-        else if (context.performed)
+        if (context.performed)
         {
             if (isPC)
             {
-                if (Mouse.current.leftButton.wasPressedThisFrame)
-                {
-                    GameObject projectile = Instantiate(weapon.prefab, transform.position, transform.rotation);
-                    Rigidbody rb = projectile.GetComponent<Rigidbody>();
-                    Bullet bullet = projectile.GetComponent<Bullet>();
-                    projectile.layer = LayerMask.NameToLayer("P_bullet");
-                    bullet.bulletDamage = weapon.damage;
-                    rb.AddForce(transform.forward * weapon.bulletSpeed, ForceMode.Impulse);
-                    Destroy(projectile, 5f);
-                    ammoCount--;
-                }
+                GameObject projectile = Instantiate(weapon.prefab, transform.position, transform.rotation);
+                Rigidbody rb = projectile.GetComponent<Rigidbody>();
+                Bullet bullet = projectile.GetComponent<Bullet>();
+                projectile.layer = LayerMask.NameToLayer("P_bullet");
+                bullet.bulletDamage = weapon.damage;
+                rb.AddForce(transform.forward * weapon.bulletSpeed, ForceMode.Impulse);
+                Destroy(projectile, 5f);
+                ammoCount--;
             }
             else
             {
-                if (Gamepad.current.rightTrigger.wasPressedThisFrame)
-                {
-                    GameObject projectile = Instantiate(weapon.prefab, transform.position, transform.rotation);
-                    Rigidbody rb = projectile.GetComponent<Rigidbody>();
-                    Bullet bullet = projectile.GetComponent<Bullet>();
-                    projectile.layer = LayerMask.NameToLayer("P_bullet");
-                    bullet.bulletDamage = weapon.damage;
-                    rb.AddForce(transform.forward * weapon.bulletSpeed, ForceMode.Impulse);
-                    Destroy(projectile, 5f);
-                    ammoCount--;
-                }
+                GameObject projectile = Instantiate(weapon.prefab, transform.position, transform.rotation);
+                Rigidbody rb = projectile.GetComponent<Rigidbody>();
+                Bullet bullet = projectile.GetComponent<Bullet>();
+                projectile.layer = LayerMask.NameToLayer("P_bullet");
+                bullet.bulletDamage = weapon.damage;
+                rb.AddForce(transform.forward * weapon.bulletSpeed, ForceMode.Impulse);
+                Destroy(projectile, 5f);
+                ammoCount--;
             }
-        }
-        else if (context.canceled)
-        {
-            Debug.Log("Action was cancelled");
         }
     }
 
@@ -126,7 +112,7 @@ public class PlayerShooting : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.R))
         {
-            ammoCount = weapon.maxAmmo;
+            ammoCount = weapon.maxMagazine;
         }
     }
 }
