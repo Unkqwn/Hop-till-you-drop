@@ -28,10 +28,13 @@ public class EnemyController : MonoBehaviour
     private int CurrentWaypoint;
     private float WaitCounter;
     private float attackCounter;
+    private bool alreadyAttacked;
+    private GameObject player;
 
     public float timeBetweenAttacks;
-    private bool alreadyAttacked;
     public GameObject bullet;
+    public GameObject shootingDirLeft;
+    public GameObject shootingDirRight;
 
     NavMeshAgent agent;
 
@@ -41,7 +44,7 @@ public class EnemyController : MonoBehaviour
 
     [SerializeField] private float AttackRange;
 
-    private GameObject player;
+   
 
     void Start()
     {
@@ -149,11 +152,11 @@ public class EnemyController : MonoBehaviour
             Vector3 shootingDir2 = new Vector3(-0.5f, 0, 0).normalized;
 
             //bullet 1
-            Rigidbody rb = Instantiate(bullet, transform.position, Quaternion.Euler(0, 10, 0)).GetComponent<Rigidbody>();
-
-            
+            Rigidbody rb = Instantiate(bullet, transform.position, Quaternion.identity).GetComponent<Rigidbody>();
             rb.AddForce(transform.forward * 10f, ForceMode.Impulse);
             Destroy(rb.gameObject, 5f);
+
+
 
             alreadyAttacked = true;
             Invoke(nameof(ResetAttack), timeBetweenAttacks);
