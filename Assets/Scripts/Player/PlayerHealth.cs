@@ -5,6 +5,7 @@ using UnityEngine.UI;
 public class PlayerHealth : MonoBehaviour
 {
     public float health;
+    [SerializeField] private float maxHealth;
 
     [SerializeField] private GameObject heartPrefab;
     [SerializeField] private GameObject heartParent;
@@ -14,7 +15,8 @@ public class PlayerHealth : MonoBehaviour
 
     private void Start()
     {
-        for (int i = 0; i < health; i++)
+        health = maxHealth;
+        for (int i = 0; i < maxHealth; i++)
         {
             GameObject heart = Instantiate(heartPrefab, heartParent.transform);
             heartImage.Add(heart.GetComponent<Image>());
@@ -52,6 +54,11 @@ public class PlayerHealth : MonoBehaviour
             {
                 heartImage[i].sprite = emptyHeart;
             }
+        }
+
+        if (health >= maxHealth)
+        {
+            health = maxHealth;
         }
     }
 }
