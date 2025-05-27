@@ -353,6 +353,54 @@ PrefabInstance:
       propertyPath: maxHealth
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 577611998721006482, guid: baca9bb8c2ee6ba48abd4ddacb5d4a58, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 577611998721006482, guid: baca9bb8c2ee6ba48abd4ddacb5d4a58, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 822201443484883809, guid: baca9bb8c2ee6ba48abd4ddacb5d4a58, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 898771483982942333, guid: baca9bb8c2ee6ba48abd4ddacb5d4a58, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 987393747391936294, guid: baca9bb8c2ee6ba48abd4ddacb5d4a58, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1335750719782495748, guid: baca9bb8c2ee6ba48abd4ddacb5d4a58, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1591592115176023610, guid: baca9bb8c2ee6ba48abd4ddacb5d4a58, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1706175594552371632, guid: baca9bb8c2ee6ba48abd4ddacb5d4a58, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1918792331864235157, guid: baca9bb8c2ee6ba48abd4ddacb5d4a58, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2694414885888290872, guid: baca9bb8c2ee6ba48abd4ddacb5d4a58, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2913398456481998531, guid: baca9bb8c2ee6ba48abd4ddacb5d4a58, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3804668042230508913, guid: baca9bb8c2ee6ba48abd4ddacb5d4a58, type: 3}
+      propertyPath: maxHealth
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 3804668042230508913, guid: baca9bb8c2ee6ba48abd4ddacb5d4a58, type: 3}
       propertyPath: heartParent
       value: 

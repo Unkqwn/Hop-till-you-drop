@@ -117,7 +117,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   numberOfProjectiles: 2
-  projectileSpeed: 12
+  projectileSpeed: 20
   projectilePrefab: {fileID: 5040537829499498140, guid: 30ad8b600bbc06f4c834821de47c04a5, type: 3}
   actualSpawnPoint: {fileID: 0}
   Waypoints: []
