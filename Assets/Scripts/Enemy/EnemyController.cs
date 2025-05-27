@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class EnemyMovement : MonoBehaviour
+public class EnemyController : MonoBehaviour
 {
     [Header("Projectile Settings")]
     public int numberOfProjectiles;
@@ -56,9 +56,6 @@ public class EnemyMovement : MonoBehaviour
     void Update()
     {
         startPoint = transform.position;
-
-
-
 
         float distanceToPlayer = Vector3.Distance(transform.position, player.transform.position);
 
@@ -130,13 +127,8 @@ public class EnemyMovement : MonoBehaviour
     {
         transform.LookAt(player.transform.position);
 
-
-
-
         if (!alreadyAttacked)
         {
-
-            //SpawnProjectiles(numberOfProjectiles);
 
             if (higherBulletCount == true)
             {
@@ -159,15 +151,9 @@ public class EnemyMovement : MonoBehaviour
             //bullet 1
             Rigidbody rb = Instantiate(bullet, transform.position, Quaternion.Euler(0, 10, 0)).GetComponent<Rigidbody>();
 
-            ////rb.transform.Rotate(Vector3.up, 10);
+            
             rb.AddForce(transform.forward * 10f, ForceMode.Impulse);
             Destroy(rb.gameObject, 5f);
-
-            //Rigidbody rb2 = Instantiate(bullet, transform.position, Quaternion.identity).GetComponent<Rigidbody>();
-            //rb2.AddForce(transform.forward * 10f, ForceMode.Impulse);
-
-            //Rigidbody rb3 = Instantiate(bullet, transform.position, Quaternion.identity).GetComponent<Rigidbody>();
-            //rb3.AddForce((transform.forward + shootingDir2) * 10f, ForceMode.Impulse);
 
             alreadyAttacked = true;
             Invoke(nameof(ResetAttack), timeBetweenAttacks);
@@ -179,36 +165,9 @@ public class EnemyMovement : MonoBehaviour
         alreadyAttacked = false;
     }
 
-    private void SpawnProjectiles(int _numberOfProjectiles)
-    {
-        float angleStep = 360f / _numberOfProjectiles;
-        float angle = 0f;
+   
 
-        for (int i = 0; i < _numberOfProjectiles; i++)
-        {
-            float projectileDirXPosition = startPoint.x + Mathf.Sin((angle * Mathf.PI) / 180) * radius;
-            float projectileDirYPosition = startPoint.z + Mathf.Cos((angle * Mathf.PI) / 180) * radius;
-
-            Vector3 projectileVector = new Vector3(projectileDirXPosition, 0, projectileDirYPosition);
-            Vector3 projectileMoveDirection = (projectileVector - startPoint).normalized * projectileSpeed;
-
-            GameObject tmpObj = Instantiate(projectilePrefab, startPoint, Quaternion.identity);
-            tmpObj.GetComponent<Rigidbody>().velocity = new Vector3(projectileMoveDirection.x, 0, projectileMoveDirection.z);
-            tmpObj.gameObject.layer = LayerMask.NameToLayer("E_bullet");
-            Destroy(tmpObj, 5f);
-            angle += angleStep;
-
-
-
-        }
-
-        
-    }
-
-    private void DoSpawnProjectiles()
-    {
-        SpawnProjectiles(numberOfProjectiles);
-    }
+   
 
 
 
