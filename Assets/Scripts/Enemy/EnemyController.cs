@@ -30,11 +30,13 @@ public class EnemyController : MonoBehaviour
     private float attackCounter;
     private bool alreadyAttacked;
     private GameObject player;
+    private Vector3 LookAtFix;
 
     public float timeBetweenAttacks;
     public GameObject bullet;
     public GameObject shootingDirLeft;
     public GameObject shootingDirRight;
+    [SerializeField] private GameObject forwardDir;
 
     NavMeshAgent agent;
 
@@ -59,6 +61,7 @@ public class EnemyController : MonoBehaviour
     void Update()
     {
         startPoint = transform.position;
+
 
         float distanceToPlayer = Vector3.Distance(transform.position, player.transform.position);
 
@@ -128,6 +131,9 @@ public class EnemyController : MonoBehaviour
 
     private void AttackPlayer()
     {
+
+        //transform.forward = new Vector3(forwardDir.transform.forward.x, transform.forward.y, forwardDir.transform.forward.z);
+        //Debug.DrawRay(transform.position, transform.forward, Color.red);
         transform.LookAt(player.transform.position);
 
         if (!alreadyAttacked)
