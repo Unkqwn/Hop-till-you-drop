@@ -11,6 +11,8 @@ public class PlayerShooting : MonoBehaviour
     private Vector2 mouseLook, joystickLook;
     private Vector3 rotationTarget;
 
+    public bool isPaused;
+
     public void OnMouseLook(InputAction.CallbackContext context)
     {
         mouseLook = context.ReadValue<Vector2>();
@@ -36,21 +38,24 @@ public class PlayerShooting : MonoBehaviour
             isPC = true;
         }
 
-        if (isPC)
+        if (!isPaused)
         {
-            RaycastHit hit;
-            Ray ray = Camera.main.ScreenPointToRay(mouseLook);
-
-            if (Physics.Raycast(ray, out hit))
+            if (isPC)
             {
-                rotationTarget = hit.point;
-            }
+                RaycastHit hit;
+                Ray ray = Camera.main.ScreenPointToRay(mouseLook);
 
-            playerAim();
-        }
-        else
-        {
-            playerAim();
+                if (Physics.Raycast(ray, out hit))
+                {
+                    rotationTarget = hit.point;
+                }
+
+                playerAim();
+            }
+            else
+            {
+                playerAim();
+            }
         }
     }
 
@@ -79,12 +84,14 @@ public class PlayerShooting : MonoBehaviour
             }
         }
     }
+
     public void Shoot(InputAction.CallbackContext context)
     {
-        if (context.performed)
+        if (context.performed && !isPaused)
         {
             if (isPC)
             {
+                Debug.Log("Shoot");
                 GameObject projectile = Instantiate(weapon.prefab, transform.position, transform.rotation);
                 Rigidbody rb = projectile.GetComponent<Rigidbody>();
                 Bullet bullet = projectile.GetComponent<Bullet>();

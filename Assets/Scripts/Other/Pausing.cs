@@ -4,14 +4,15 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UIElements;
 
-public enum GameState
-{
-    
-}
-
 public class Pausing : MonoBehaviour
 {
     private bool isPaused = false;
+    private PlayerShooting pShoot;
+
+    private void Start()
+    {
+        pShoot = GameObject.FindWithTag("Player").GetComponent<PlayerShooting>();
+    }
 
     private void Update()
     {
@@ -23,6 +24,7 @@ public class Pausing : MonoBehaviour
         {
             Time.timeScale = 1f;
         }
+        pShoot.isPaused = isPaused;
     }
 
     public void OnPause(InputAction.CallbackContext context)
