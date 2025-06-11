@@ -3,19 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class EnemyController : MonoBehaviour
+public class StrongEnemyScript : MonoBehaviour
 {
-    [Header("Projectile Settings")]
-    public int numberOfProjectiles;
-    public float projectileSpeed;
-    public GameObject projectilePrefab;
-    public GameObject actualSpawnPoint;
 
-
-    [Header("Private Variables")]
-    private Vector3 startPoint;
-    private const float radius = 5f;
-    private bool higherBulletCount;
 
     enum AIState
     {
@@ -30,13 +20,12 @@ public class EnemyController : MonoBehaviour
     private float attackCounter;
     private bool alreadyAttacked;
     private GameObject player;
-    private Vector3 LookAtFix;
 
     public float timeBetweenAttacks;
     public GameObject bullet;
-    public GameObject shootingDirLeft;
-    public GameObject shootingDirRight;
-    [SerializeField] private GameObject forwardDir;
+    public GameObject left;
+    public GameObject middle;
+    public GameObject right;
 
     NavMeshAgent agent;
 
@@ -46,28 +35,24 @@ public class EnemyController : MonoBehaviour
 
     [SerializeField] private float AttackRange;
 
-   
 
+    // Start is called before the first frame update
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
         player = GameObject.FindGameObjectWithTag("Player");
 
         WaitCounter = WaitAtPoint;
-        higherBulletCount = false;
     }
 
-
+    // Update is called once per frame
     void Update()
     {
-        startPoint = transform.position;
-
         float distanceToPlayer = 20;
-        if (player != null )
+        if (player != null)
         {
-             distanceToPlayer = Vector3.Distance(transform.position, player.transform.position);
+            distanceToPlayer = Vector3.Distance(transform.position, player.transform.position);
         }
-        
 
         switch (CurrentState)
         {
@@ -118,69 +103,51 @@ public class EnemyController : MonoBehaviour
                 }
                 else
                 {
-                    if (player != null) 
+
+                    if (player != null)
                     {
                         agent.SetDestination(player.transform.position);
                     }
-                    
-                    
-                    agent.isStopped = false;
 
+                    agent.isStopped = false;
                 }
 
                 break;
 
             case AIState.Attacking:
-                
+
                 if (player != null)
                 {
                     agent.SetDestination(player.transform.position);
                     AttackPlayer();
                 }
-                
+
                 break;
 
         }
-
-    }
+     }
 
     private void AttackPlayer()
     {
+        if (!alreadyAttacked) { 
+       
+        //left
+        Rigidbody rb = Instantiate(bullet, left.transform.position, left.transform.rotation).GetComponent<Rigidbody>();
+        rb.AddForce(rb.transform.forward * 10f, ForceMode.Impulse);
+        Destroy(rb.gameObject, 5f);
 
-        //transform.forward = new Vector3(forwardDir.transform.forward.x, transform.forward.y, forwardDir.transform.forward.z);
-        //Debug.DrawRay(transform.position, transform.forward, Color.red);
-        transform.LookAt(player.transform.position);
+        Rigidbody rb2 = Instantiate(bullet, middle.transform.position, Quaternion.identity).GetComponent<Rigidbody>();
+        rb2.AddForce(transform.forward * 10f, ForceMode.Impulse);
+        Destroy(rb2.gameObject, 5f);
 
-        if (!alreadyAttacked)
-        {
-
-            if (higherBulletCount == true)
-            {
-               
-                numberOfProjectiles = 10;
-                higherBulletCount = false;
-            }
-            else
-            {
-                
-                numberOfProjectiles = 8;
-                higherBulletCount = true;
-            }
-
-           
-            Debug.Log("numberofprojectiles: " + numberOfProjectiles);
-            Vector3 shootingDir1 = new Vector3(0.5f, 0, 0).normalized;
-            Vector3 shootingDir2 = new Vector3(-0.5f, 0, 0).normalized;
-
-            //bullet 1
-            Rigidbody rb = Instantiate(bullet, transform.position, Quaternion.identity).GetComponent<Rigidbody>();
-            rb.AddForce(transform.forward * 20f, ForceMode.Impulse);
-            Destroy(rb.gameObject, 5f);
+        Rigidbody rb3 = Instantiate(bullet, right.transform.position, right.transform.rotation).GetComponent<Rigidbody>();
+        rb3.AddForce(rb3.transform.forward * 10f, ForceMode.Impulse);
+        Destroy(rb3.gameObject, 5f);
 
 
 
             alreadyAttacked = true;
-            Invoke(nameof(ResetAttack), timeBetweenAttacks);
+        Invoke(nameof(ResetAttack), timeBetweenAttacks);
         }
     }
 
@@ -188,11 +155,6 @@ public class EnemyController : MonoBehaviour
     {
         alreadyAttacked = false;
     }
-
-   
-
-   
-
 
 
 }

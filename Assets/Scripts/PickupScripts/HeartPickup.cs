@@ -4,10 +4,13 @@ using UnityEngine;
 
 public class HeartPickup : MonoBehaviour
 {
+
+    public GameObject player;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+       
     }
 
     // Update is called once per frame
@@ -20,7 +23,7 @@ public class HeartPickup : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            GetComponent<PlayerHealth>().health++;
+            player.GetComponent<PlayerHealth>().health++;
             Destroy(this.gameObject);
         }
     }

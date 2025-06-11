@@ -9,7 +9,11 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField]
     private GameObject BossObject;
 
+    [SerializeField] private List<GameObject> enemies = new List<GameObject>();
+
     public  GameObject newEnemy;
+
+
     private GameObject BossEnemy;
     private SpriteRenderer rend;
     private int randomSpawnZone;
@@ -33,7 +37,10 @@ public class EnemySpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.position = playerToFollow.transform.position;
+        if (playerToFollow != null)
+        {
+            transform.position = playerToFollow.transform.position;
+        }
     }
 
     private void SpawnNewEnemy()
@@ -60,10 +67,12 @@ public class EnemySpawner : MonoBehaviour
                 break;
         }
 
-
+        int randomEnemy = Random.Range(0, 5);
         Vector3 pizza = playerToFollow.transform.position + Random.insideUnitSphere.normalized * 20;
         pizza.y = 0;
-        newEnemy = Instantiate(BossObject, pizza, Quaternion.identity);
+
+
+        newEnemy = Instantiate(enemies[randomEnemy], pizza, Quaternion.identity);
 
     }
 
