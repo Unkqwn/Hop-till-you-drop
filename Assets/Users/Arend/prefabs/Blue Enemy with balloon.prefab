@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 17571386763083285}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.012, z: 0.935}
+  m_LocalPosition: {x: 0, y: 0.3, z: 0.935}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -56,7 +56,7 @@ Transform:
   m_GameObject: {fileID: 1439088666829960760}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0.16111672, z: -0, w: 0.9869354}
-  m_LocalPosition: {x: 0, y: 1.089, z: 0.987}
+  m_LocalPosition: {x: 0, y: 0.3, z: 0.987}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -87,7 +87,7 @@ Transform:
   m_GameObject: {fileID: 8464447399026984649}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.13471647, z: -0, w: 0.9908842}
-  m_LocalPosition: {x: 0, y: 1.02, z: 0.912}
+  m_LocalPosition: {x: 0, y: 0.28, z: 0.912}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -216,8 +216,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Waypoints: []
   WaitAtPoint: 2
-  timeBetweenAttacks: 1
-  bullet: {fileID: 7214995145309418835, guid: f1d9ef361aa7f8b44bf11d8a05d20c61, type: 3}
+  timeBetweenAttacks: 5
+  bullet: {fileID: 5248878727472248988, guid: 365a6fdd6f9977743af6127c904f0d58, type: 3}
   left: {fileID: 8464447399026984649}
   middle: {fileID: 17571386763083285}
   right: {fileID: 1439088666829960760}

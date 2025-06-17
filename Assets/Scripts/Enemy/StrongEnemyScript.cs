@@ -118,8 +118,11 @@ public class StrongEnemyScript : MonoBehaviour
 
                 if (player != null)
                 {
+                    transform.LookAt(player.transform.position);
                     agent.SetDestination(player.transform.position);
+
                     AttackPlayer();
+
                 }
 
                 break;
@@ -129,24 +132,25 @@ public class StrongEnemyScript : MonoBehaviour
 
     private void AttackPlayer()
     {
+        
         if (!alreadyAttacked) { 
        
         //left
         Rigidbody rb = Instantiate(bullet, left.transform.position, left.transform.rotation).GetComponent<Rigidbody>();
-        rb.AddForce(rb.transform.forward * 10f, ForceMode.Impulse);
-        Destroy(rb.gameObject, 5f);
+        rb.AddForce(rb.transform.forward * 25f, ForceMode.Impulse);
+        //Destroy(rb.gameObject, 10f);
 
         Rigidbody rb2 = Instantiate(bullet, middle.transform.position, Quaternion.identity).GetComponent<Rigidbody>();
         rb2.AddForce(transform.forward * 10f, ForceMode.Impulse);
-        Destroy(rb2.gameObject, 5f);
+        //Destroy(rb2.gameObject, 10f);
 
         Rigidbody rb3 = Instantiate(bullet, right.transform.position, right.transform.rotation).GetComponent<Rigidbody>();
-        rb3.AddForce(rb3.transform.forward * 10f, ForceMode.Impulse);
-        Destroy(rb3.gameObject, 5f);
+        rb3.AddForce(rb3.transform.forward * 25f, ForceMode.Impulse);
+        //Destroy(rb3.gameObject, 10f);
 
+        
 
-
-            alreadyAttacked = true;
+        alreadyAttacked = true;
         Invoke(nameof(ResetAttack), timeBetweenAttacks);
         }
     }
