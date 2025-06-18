@@ -9,15 +9,19 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField]
     private GameObject BossObject;
 
+    [SerializeField] private List<GameObject> enemies = new List<GameObject>();
+
     public  GameObject newEnemy;
+
+
     private GameObject BossEnemy;
     private SpriteRenderer rend;
     private int randomSpawnZone;
     private float randomXposition, randomYposition;
-    private Vector3 spawnPostion;
     public GameObject playerToFollow;
     public float SpawnDelay;
     public float SpawnRate;
+    
 
     public float MinRange = 0f;
     public float MaxRange = 10f;
@@ -27,12 +31,16 @@ public class EnemySpawner : MonoBehaviour
     {
         playerToFollow = GameObject.FindGameObjectWithTag("Player");
         InvokeRepeating("SpawnNewEnemy", SpawnDelay, SpawnRate);
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        transform.position = playerToFollow.transform.position;
+        if (playerToFollow != null)
+        {
+            transform.position = playerToFollow.transform.position;
+        }
     }
 
     private void SpawnNewEnemy()
@@ -59,8 +67,14 @@ public class EnemySpawner : MonoBehaviour
                 break;
         }
 
-        spawnPostion = new Vector3(randomXposition, -10f, randomYposition );
-        newEnemy = Instantiate(BossObject, spawnPostion, Quaternion.identity);
+        int randomEnemy = Random.Range(0, 5);
+        Vector3 pizza = playerToFollow.transform.position + Random.insideUnitSphere.normalized * 20;
+        pizza.y = 0;
+
+
+        newEnemy = Instantiate(enemies[randomEnemy], pizza, Quaternion.identity);
 
     }
+
+  
 }
