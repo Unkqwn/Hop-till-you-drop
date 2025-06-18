@@ -2,12 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.UIElements;
+using UnityEngine.EventSystems;
 
 public class Pausing : MonoBehaviour
 {
-    private bool isPaused = false;
+    [SerializeField] private bool isPaused = false;
     private PlayerShooting pShoot;
+
+    public GameObject pauseFirstButton;
 
     private void Start()
     {
@@ -19,6 +21,10 @@ public class Pausing : MonoBehaviour
         if (isPaused)
         {
             Time.timeScale = 0f;
+            EventSystem.current.SetSelectedGameObject(null);
+
+
+            EventSystem.current.SetSelectedGameObject(pauseFirstButton);
         }
         else
         {

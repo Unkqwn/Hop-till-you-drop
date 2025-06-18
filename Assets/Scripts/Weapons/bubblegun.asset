@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3097516977795bb4587996245d3712a3, type: 3}
-  m_Name: Watergun
+  m_Name: bubblegun
   m_EditorClassIdentifier: 
   prefab: {fileID: 3111969935523809753, guid: b65ad7fac6731564eaa2476d818a8cb2, type: 3}
   maxMagazine: 0

@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
-public class Bullet : MonoBehaviour
+public class Weapon : MonoBehaviour
 {
-    public float bulletDamage;
+    public float damage;
 
     private void OnTriggerEnter(Collider other)
     {

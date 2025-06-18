@@ -91,26 +91,43 @@ public class PlayerShooting : MonoBehaviour
         {
             if (isPC)
             {
-                Debug.Log("Shoot");
-                GameObject projectile = Instantiate(weapon.prefab, transform.position, transform.rotation);
-                Rigidbody rb = projectile.GetComponent<Rigidbody>();
-                Bullet bullet = projectile.GetComponent<Bullet>();
-                projectile.layer = LayerMask.NameToLayer("P_bullet");
-                bullet.bulletDamage = weapon.damage;
-                rb.AddForce(transform.forward * weapon.bulletSpeed, ForceMode.Impulse);
-                Destroy(projectile, 5f);
-                ammoCount--;
+                if (weapon.weapon == weaponType.bubblegun)
+                {
+                    GameObject projectile = Instantiate(weapon.prefab, transform.position, transform.rotation);
+                    Rigidbody rb = projectile.GetComponent<Rigidbody>();
+                    Weapon bullet = projectile.GetComponent<Weapon>();
+                    projectile.layer = LayerMask.NameToLayer("P_bullet");
+                    bullet.damage = weapon.damage;
+                    rb.AddForce(transform.forward * weapon.bulletSpeed, ForceMode.Impulse);
+                    Destroy(projectile, 5f);
+                    ammoCount--;
+                }
+                else if (weapon.weapon == weaponType.waterBalloon)
+                {
+
+                }
             }
             else
             {
-                GameObject projectile = Instantiate(weapon.prefab, transform.position, transform.rotation);
-                Rigidbody rb = projectile.GetComponent<Rigidbody>();
-                Bullet bullet = projectile.GetComponent<Bullet>();
-                projectile.layer = LayerMask.NameToLayer("P_bullet");
-                bullet.bulletDamage = weapon.damage;
-                rb.AddForce(transform.forward * weapon.bulletSpeed, ForceMode.Impulse);
-                Destroy(projectile, 5f);
-                ammoCount--;
+                if (weapon.weapon == weaponType.bubblegun)
+                {
+                    GameObject projectile = Instantiate(weapon.prefab, transform.position, transform.rotation);
+                    Rigidbody rb = projectile.GetComponent<Rigidbody>();
+                    Weapon bullet = projectile.GetComponent<Weapon>();
+                    projectile.layer = LayerMask.NameToLayer("P_bullet");
+                    bullet.damage = weapon.damage;
+                    rb.AddForce(transform.forward * weapon.bulletSpeed, ForceMode.Impulse);
+                    Destroy(projectile, 5f);
+                    ammoCount--;
+                }
+                else if (weapon.weapon == weaponType.waterBalloon)
+                {
+                    GameObject projectile = Instantiate(weapon.prefab, transform.position, transform.rotation);
+                    Rigidbody rb = projectile.GetComponent<Rigidbody>();
+                    Weapon balloon = projectile.GetComponent<Weapon>();
+                    projectile.layer = LayerMask.NameToLayer("P_bullet");
+                    balloon.damage = weapon.damage;
+                }
             }
         }
     }

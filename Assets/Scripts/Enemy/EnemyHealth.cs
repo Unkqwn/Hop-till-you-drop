@@ -15,7 +15,7 @@ public class EnemyHealth : MonoBehaviour
     {
         if (other.gameObject.layer == 7)
         {
-            float damage = other.GetComponent<Bullet>().bulletDamage;
+            float damage = other.GetComponent<Weapon>().damage;
             health -= damage;
         }
     }
