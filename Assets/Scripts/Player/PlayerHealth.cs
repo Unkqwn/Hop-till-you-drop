@@ -17,7 +17,7 @@ public class PlayerHealth : MonoBehaviour
     private void Start()
     {
 
-        deathScreen.SetActive(false);
+        //deathScreen.SetActive(false);
         health = maxHealth;
         for (int i = 0; i < maxHealth; i++)
         {
