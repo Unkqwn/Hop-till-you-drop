@@ -31,8 +31,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.13052621, z: -0, w: 0.9914449}
   m_LocalPosition: {x: -78.28489, y: 1.189, z: 27.463915}
-  m_LocalScale: {x: 2.033598, y: 1.5634577, z: 1.563458}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 5, y: 3.8440678, z: 3.8440678}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -146,4 +146,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f240eb14e8c1e15408a2b587df78c312, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletDamage: 0
+  damage: 0
