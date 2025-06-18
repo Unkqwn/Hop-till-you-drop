@@ -38,7 +38,7 @@ public class PlayerHealth : MonoBehaviour
         if (other.gameObject.layer == 9)
         {
             health -= 1f;
-            Destroy(other);
+            Destroy(other.gameObject);
         }
     }
 
