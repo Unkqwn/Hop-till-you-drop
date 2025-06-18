@@ -11,6 +11,8 @@ public class PlayerShooting : MonoBehaviour
     private Vector2 mouseLook, joystickLook;
     private Vector3 rotationTarget;
 
+    public bool isPaused;
+
     public void OnMouseLook(InputAction.CallbackContext context)
     {
         mouseLook = context.ReadValue<Vector2>();
@@ -22,7 +24,7 @@ public class PlayerShooting : MonoBehaviour
 
     private void Start()
     {
-        ammoCount = weapon.maxAmmo;
+        ammoCount = weapon.maxMagazine;
     }
 
     private void Update()
@@ -36,21 +38,24 @@ public class PlayerShooting : MonoBehaviour
             isPC = true;
         }
 
-        if (isPC)
+        if (!isPaused)
         {
-            RaycastHit hit;
-            Ray ray = Camera.main.ScreenPointToRay(mouseLook);
-
-            if (Physics.Raycast(ray, out hit))
+            if (isPC)
             {
-                rotationTarget = hit.point;
-            }
+                RaycastHit hit;
+                Ray ray = Camera.main.ScreenPointToRay(mouseLook);
 
-            playerAim();
-        }
-        else
-        {
-            playerAim();
+                if (Physics.Raycast(ray, out hit))
+                {
+                    rotationTarget = hit.point;
+                }
+
+                playerAim();
+            }
+            else
+            {
+                playerAim();
+            }
         }
     }
 
@@ -79,46 +84,51 @@ public class PlayerShooting : MonoBehaviour
             }
         }
     }
+
     public void Shoot(InputAction.CallbackContext context)
     {
-        if (context.started)
-        {
-            Debug.Log("Action has started");
-        }
-        else if (context.performed)
+        if (context.performed && !isPaused)
         {
             if (isPC)
             {
-                if (Mouse.current.leftButton.wasPressedThisFrame)
+                if (weapon.weapon == weaponType.bubblegun)
                 {
                     GameObject projectile = Instantiate(weapon.prefab, transform.position, transform.rotation);
                     Rigidbody rb = projectile.GetComponent<Rigidbody>();
-                    Bullet bullet = projectile.GetComponent<Bullet>();
+                    Weapon bullet = projectile.GetComponent<Weapon>();
                     projectile.layer = LayerMask.NameToLayer("P_bullet");
-                    bullet.bulletDamage = weapon.damage;
+                    bullet.damage = weapon.damage;
                     rb.AddForce(transform.forward * weapon.bulletSpeed, ForceMode.Impulse);
                     Destroy(projectile, 5f);
                     ammoCount--;
+                }
+                else if (weapon.weapon == weaponType.waterBalloon)
+                {
+
                 }
             }
             else
             {
-                if (Gamepad.current.rightTrigger.wasPressedThisFrame)
+                if (weapon.weapon == weaponType.bubblegun)
                 {
                     GameObject projectile = Instantiate(weapon.prefab, transform.position, transform.rotation);
                     Rigidbody rb = projectile.GetComponent<Rigidbody>();
-                    Bullet bullet = projectile.GetComponent<Bullet>();
+                    Weapon bullet = projectile.GetComponent<Weapon>();
                     projectile.layer = LayerMask.NameToLayer("P_bullet");
-                    bullet.bulletDamage = weapon.damage;
+                    bullet.damage = weapon.damage;
                     rb.AddForce(transform.forward * weapon.bulletSpeed, ForceMode.Impulse);
                     Destroy(projectile, 5f);
                     ammoCount--;
                 }
+                else if (weapon.weapon == weaponType.waterBalloon)
+                {
+                    GameObject projectile = Instantiate(weapon.prefab, transform.position, transform.rotation);
+                    Rigidbody rb = projectile.GetComponent<Rigidbody>();
+                    Weapon balloon = projectile.GetComponent<Weapon>();
+                    projectile.layer = LayerMask.NameToLayer("P_bullet");
+                    balloon.damage = weapon.damage;
+                }
             }
-        }
-        else if (context.canceled)
-        {
-            Debug.Log("Action was cancelled");
         }
     }
 
@@ -126,7 +136,7 @@ public class PlayerShooting : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.R))
         {
-            ammoCount = weapon.maxAmmo;
+            ammoCount = weapon.maxMagazine;
         }
     }
 }

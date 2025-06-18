@@ -1,5 +1,5 @@
 {
-    "name": "Player",
+    "name": "PlayerControl",
     "maps": [
         {
             "name": "Player",
@@ -625,6 +625,17 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "XR",
+                    "action": "Click",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "fc55b7c9-75fc-4ea6-b0d2-4f2b392d0f6c",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
                     "action": "Click",
                     "isComposite": false,
                     "isPartOfComposite": false
