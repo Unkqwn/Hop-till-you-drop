@@ -1802,6 +1802,7 @@ GameObject:
   - component: {fileID: 9165079669688215412}
   - component: {fileID: 7972064146404961920}
   - component: {fileID: 1003102679180212828}
+  - component: {fileID: 79993679933061817}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -2015,8 +2016,8 @@ MonoBehaviour:
   maxHealth: 5
   heartPrefab: {fileID: 1377557422560727053, guid: e980c0fc6a6cb4a439ff8384ea45ff05, type: 3}
   heartParent: {fileID: 0}
-  fullHeart: {fileID: 21300000, guid: 44f9c823147b83e4f8f75e57acd0ae09, type: 3}
-  emptyHeart: {fileID: 21300000, guid: 7d59e7f52ce07d541af37a0b3fb6ffaf, type: 3}
+  fullHeart: {fileID: 21300000, guid: 7c178f667fd92a2428597cdc855d2601, type: 3}
+  emptyHeart: {fileID: 21300000, guid: d13c2e04ff1aa0d4ea7ea917f5d67334, type: 3}
   heartImage: []
 --- !u!114 &7972064146404961920
 MonoBehaviour:
@@ -2047,6 +2048,21 @@ MonoBehaviour:
   rotateSpeed: 1
   isPC: 0
   isPaused: 0
+--- !u!114 &79993679933061817
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7607939036113623866}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3558bc88cb1424b47a51d4dfe4f8ea9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scoreText: {fileID: 0}
+  score: 0
+  WinScreen: {fileID: 0}
 --- !u!1 &8034986197062463292
 GameObject:
   m_ObjectHideFlags: 0

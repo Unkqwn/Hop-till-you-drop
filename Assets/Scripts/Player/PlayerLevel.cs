@@ -2,20 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class PlayerLevel : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI scoreText;
     public int score;
 
-    [SerializeField] private GameObject WinScreen;
-
-    void Start()
-    {
-
-        WinScreen.SetActive(false);
-    }
+    [SerializeField] private Scene winScene;
 
     void Update()
     {
@@ -23,7 +17,7 @@ public class PlayerLevel : MonoBehaviour
 
         if (score >= 10)
         {
-            WinScreen.SetActive(true);
+            SceneManager.SetActiveScene(winScene);
         }
     }
 }

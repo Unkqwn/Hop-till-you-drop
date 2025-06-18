@@ -6,7 +6,6 @@ public class PlayerHealth : MonoBehaviour
 {
     public float health;
     [SerializeField] private float maxHealth;
-    [SerializeField] private GameObject deathScreen;
 
     [SerializeField] private GameObject heartPrefab;
     [SerializeField] private GameObject heartParent;
@@ -16,8 +15,6 @@ public class PlayerHealth : MonoBehaviour
 
     private void Start()
     {
-
-        //deathScreen.SetActive(false);
         health = maxHealth;
         for (int i = 0; i < maxHealth; i++)
         {
@@ -32,7 +29,6 @@ public class PlayerHealth : MonoBehaviour
         {
             Time.timeScale = 0f;
             Destroy(this.gameObject);
-            deathScreen.SetActive(true);
         }
         HeartsUpdate();
     }
