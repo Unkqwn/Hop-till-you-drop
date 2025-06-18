@@ -2,14 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.EventSystems;
+using static UnityEngine.UIElements.UxmlAttributeDescription;
+using UnityEngine.SceneManagement;
 
 public class Pausing : MonoBehaviour
 {
     [SerializeField] private bool isPaused = false;
+    [SerializeField] private GameObject pauseMenu;
     private PlayerShooting pShoot;
-
-    public GameObject pauseFirstButton;
 
     private void Start()
     {
@@ -21,16 +21,13 @@ public class Pausing : MonoBehaviour
         if (isPaused)
         {
             Time.timeScale = 0f;
-            EventSystem.current.SetSelectedGameObject(null);
-
-
-            EventSystem.current.SetSelectedGameObject(pauseFirstButton);
         }
         else
         {
             Time.timeScale = 1f;
         }
         pShoot.isPaused = isPaused;
+        pauseMenu.SetActive(isPaused);
     }
 
     public void OnPause(InputAction.CallbackContext context)
@@ -39,5 +36,23 @@ public class Pausing : MonoBehaviour
         {
             isPaused = !isPaused;
         }
+    }
+
+    public void ResumeButton()
+    {
+        isPaused = false;
+    }
+
+    public void RestartButton()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    public void QuitButton()
+    {
+        Application.Quit();
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#endif
     }
 }

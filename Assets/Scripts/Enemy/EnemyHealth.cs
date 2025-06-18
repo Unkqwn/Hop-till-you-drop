@@ -3,11 +3,19 @@ using UnityEngine;
 public class EnemyHealth : MonoBehaviour
 {
     [SerializeField] private float health;
+    [SerializeField] private PlayerLevel EXP;
+
+    private void Start()
+    {
+        EXP = FindAnyObjectByType<PlayerLevel>();
+    }
+
     void Update()
     {
         if (health <= 0)
         {
             Destroy(this.gameObject);
+            EXP.score++;
         }
     }
 

@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3097516977795bb4587996245d3712a3, type: 3}
   m_Name: bubblegun
   m_EditorClassIdentifier: 
-  prefab: {fileID: 3111969935523809753, guid: b65ad7fac6731564eaa2476d818a8cb2, type: 3}
+  weapon: 0
+  prefab: {fileID: 6447565354277337943, guid: 6fbe43135e9608b48954f030fa6d655b, type: 3}
   maxMagazine: 0
   damage: 1
   bulletSpeed: 20
