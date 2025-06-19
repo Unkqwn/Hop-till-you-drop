@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class PlayerHealth : MonoBehaviour
 {
@@ -29,6 +30,7 @@ public class PlayerHealth : MonoBehaviour
         {
             Time.timeScale = 0f;
             Destroy(this.gameObject);
+            SceneManager.LoadScene(3);
         }
         HeartsUpdate();
     }
