@@ -83,6 +83,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemyEdit
       objectReference: {fileID: 0}
+    - target: {fileID: 3587806046279688542, guid: ccd48d88204d25c4791e110ee7e42a0d, type: 3}
+      propertyPath: heartPickup
+      value: 
+      objectReference: {fileID: 7839278160962245014, guid: 2b5f94d73d49a8c48b4dfd29efc79a0d, type: 3}
     - target: {fileID: 6809478299665320743, guid: ccd48d88204d25c4791e110ee7e42a0d, type: 3}
       propertyPath: forwardDir
       value: 

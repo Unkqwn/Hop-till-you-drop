@@ -175,6 +175,9 @@ public class EnemyController : MonoBehaviour
             //bullet 1
             Rigidbody rb = Instantiate(bullet, transform.position, Quaternion.identity).GetComponent<Rigidbody>();
             rb.AddForce(transform.forward * 20f, ForceMode.Impulse);
+
+           
+           
             Destroy(rb.gameObject, 5f);
 
 

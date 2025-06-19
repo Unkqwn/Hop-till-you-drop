@@ -23,7 +23,7 @@ public class HeartPickup : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            player.GetComponent<PlayerHealth>().health++;
+            other.GetComponent<PlayerHealth>().health++;
             Destroy(this.gameObject);
         }
     }
