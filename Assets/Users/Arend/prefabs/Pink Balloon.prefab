@@ -148,6 +148,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   projectilePrefab: {fileID: 7214995145309418835, guid: f1d9ef361aa7f8b44bf11d8a05d20c61, type: 3}
-  projectileSpeed: 10
+  projectileSpeed: 5
   numberOfProjectiles: 12
-  splitTime: 2
+  splitTime: 1
