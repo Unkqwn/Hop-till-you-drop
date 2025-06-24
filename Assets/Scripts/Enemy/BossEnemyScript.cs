@@ -23,12 +23,17 @@ public class BossEnemyScript : MonoBehaviour
     public GameObject middle1;
     public GameObject middle2;
     public GameObject sr2_right1;
+    public GameObject sr2_right2;
     public GameObject sr2_left1;
+    public GameObject sr2_left2;
+   
 
         
     //bullet types
     public GameObject bullet;
     public GameObject homingBullet;
+    public GameObject splittingBullet;
+    public GameObject heartShot;
     
 
 
@@ -169,18 +174,22 @@ public class BossEnemyScript : MonoBehaviour
             if (changeRow == true)
             {
                 Rigidbody rb6 = Instantiate(bullet, middle1.transform.position, middle1.transform.rotation).GetComponent<Rigidbody>();
-                rb6.AddForce(rb6.transform.forward * 10f, ForceMode.Impulse);
+                rb6.AddForce(rb6.transform.forward * 5f, ForceMode.Impulse);
 
                 Rigidbody rb7 = Instantiate(bullet, middle2.transform.position, middle2.transform.rotation).GetComponent<Rigidbody>();
-                rb7.AddForce(rb7.transform.forward * 10f, ForceMode.Impulse);
+                rb7.AddForce(rb7.transform.forward * 5f, ForceMode.Impulse);
 
-                Rigidbody rb8 = Instantiate(homingBullet, sr2_right1.transform.position, sr2_right1.transform.rotation).GetComponent<Rigidbody>();
-                rb8.AddForce(rb8.transform.forward * 20f, ForceMode.Impulse);
+                Rigidbody rb8 = Instantiate(bullet, sr2_right1.transform.position, sr2_right1.transform.rotation).GetComponent<Rigidbody>();
+                rb8.AddForce(rb8.transform.forward * 5f, ForceMode.Impulse);
 
-                Rigidbody rb9 = Instantiate(homingBullet, sr2_left1.transform.position, sr2_left1.transform.rotation).GetComponent<Rigidbody>();
-                rb9.AddForce(rb9.transform.forward * 20f, ForceMode.Impulse);
+                Rigidbody rb9 = Instantiate(bullet, sr2_left1.transform.position, sr2_left1.transform.rotation).GetComponent<Rigidbody>();
+                rb9.AddForce(rb9.transform.forward * 5f, ForceMode.Impulse);
 
+                Rigidbody rb10 = Instantiate(bullet, sr2_right2.transform.position, sr2_right2.transform.rotation).GetComponent<Rigidbody>();
+                rb10.AddForce(rb10.transform.forward * 5f, ForceMode.Impulse);
 
+                Rigidbody rb11 = Instantiate(bullet, sr2_left2.transform.position, sr2_left2.transform.rotation).GetComponent<Rigidbody>();
+                rb11.AddForce(rb11.transform.forward * 5f, ForceMode.Impulse);
 
                 changeRow = false;
             }
@@ -188,22 +197,22 @@ public class BossEnemyScript : MonoBehaviour
             {
 
                 Rigidbody rb = Instantiate(bullet, left.transform.position, left.transform.rotation).GetComponent<Rigidbody>();
-                rb.AddForce(rb.transform.forward * 10f, ForceMode.Impulse);
+                rb.AddForce(rb.transform.forward * 5f, ForceMode.Impulse);
 
 
                 Rigidbody rb2 = Instantiate(bullet, middle.transform.position, Quaternion.identity).GetComponent<Rigidbody>();
-                rb2.AddForce(transform.forward * 10f, ForceMode.Impulse);
+                rb2.AddForce(transform.forward * 5f, ForceMode.Impulse);
 
 
                 Rigidbody rb3 = Instantiate(bullet, right.transform.position, right.transform.rotation).GetComponent<Rigidbody>();
-                rb3.AddForce(rb3.transform.forward * 10f, ForceMode.Impulse);
+                rb3.AddForce(rb3.transform.forward * 5f, ForceMode.Impulse);
 
 
                 Rigidbody rb4 = Instantiate(bullet, secondLeft.transform.position, secondLeft.transform.rotation).GetComponent<Rigidbody>();
-                rb4.AddForce(rb4.transform.forward * 10f, ForceMode.Impulse);
+                rb4.AddForce(rb4.transform.forward * 5f, ForceMode.Impulse);
 
                 Rigidbody rb5 = Instantiate(bullet, secondRight.transform.position, secondRight.transform.rotation).GetComponent<Rigidbody>();
-                rb5.AddForce(rb5.transform.forward * 10f, ForceMode.Impulse);
+                rb5.AddForce(rb5.transform.forward * 5f, ForceMode.Impulse);
 
                 changeRow = true;
             }

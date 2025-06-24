@@ -8,7 +8,7 @@ public class BulletTarget : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Invoke("follow", 2);
+        Invoke("follow", 3);
         player = GameObject.FindGameObjectWithTag("Player");
     }
 

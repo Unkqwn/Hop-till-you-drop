@@ -4,7 +4,7 @@ using UnityEngine.InputSystem;
 public class PlayerShooting : MonoBehaviour
 {
     [SerializeField] private WeaponStats weapon;
-    private int ammoCount;
+    public int ammoCount;
 
     [SerializeField] private float rotateSpeed;
     [SerializeField] private bool isPC;
@@ -93,7 +93,7 @@ public class PlayerShooting : MonoBehaviour
             {
                 if (weapon.weapon == weaponType.bubblegun)
                 {
-                    GameObject projectile = Instantiate(weapon.prefab, transform.position, transform.rotation);
+                    GameObject projectile = Instantiate(weapon.prefab, transform.position, transform.rotation * Quaternion.Euler(0,90,0));
                     Rigidbody rb = projectile.GetComponent<Rigidbody>();
                     Weapon bullet = projectile.GetComponent<Weapon>();
                     projectile.layer = LayerMask.NameToLayer("P_bullet");
