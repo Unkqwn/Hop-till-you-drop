@@ -1,5 +1,7 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class PlayerShooting : MonoBehaviour
 {
@@ -15,6 +17,12 @@ public class PlayerShooting : MonoBehaviour
 
     public bool isPaused;
 
+    [SerializeField] private GameObject ammoPrefab;
+    [SerializeField] private GameObject ammoParent;
+    [SerializeField] private Sprite fullHeart;
+    [SerializeField] private Sprite emptyHeart;
+    [SerializeField] private List<Image> ammoImage = new List<Image>();
+
     public void OnMouseLook(InputAction.CallbackContext context)
     {
         mouseLook = context.ReadValue<Vector2>();
@@ -26,7 +34,12 @@ public class PlayerShooting : MonoBehaviour
 
     private void Start()
     {
-        ammoMagCount = weapon.maxMagazine;
+        ammoMagCount = weapon.maxMagazine; 
+        /*for (int i = 0; i < weapon.maxMagazine; i++)
+        {
+            GameObject heart = Instantiate(ammoPrefab, ammoParent.transform);
+            ammoImage.Add(heart.GetComponent<Image>());
+        }*/
     }
 
     private void Update()
@@ -127,6 +140,7 @@ public class PlayerShooting : MonoBehaviour
                     {
                     }
                 }
+                //ammoUpdate();
             }
             else
             {
@@ -138,5 +152,10 @@ public class PlayerShooting : MonoBehaviour
     public void Reload(InputAction.CallbackContext context)
     {
         ammoMagCount = weapon.maxMagazine;
+    }
+
+    private void ammoUpdate()
+    {
+        
     }
 }

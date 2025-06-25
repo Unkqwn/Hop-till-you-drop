@@ -5,8 +5,8 @@ public class EnemyHealth : MonoBehaviour
     [SerializeField] private float health;
     [SerializeField] private PlayerLevel EXP;
 
-    const float dropChance = 1f / 3f;
-    const float ammoDropChance = 1f / 2f;
+    const float dropChance = 1f / 5f;
+    const float ammoDropChance = 1f / 5f;
     public GameObject heartPickup;
     public GameObject ammoPickup;
     private Vector3 ammoOffset;
