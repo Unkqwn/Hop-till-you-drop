@@ -4,7 +4,9 @@ using UnityEngine.InputSystem;
 public class PlayerShooting : MonoBehaviour
 {
     [SerializeField] private WeaponStats weapon;
+    
     public int ammoCount;
+    private int ammoMagCount;
 
     [SerializeField] private float rotateSpeed;
     [SerializeField] private bool isPC;
@@ -24,7 +26,7 @@ public class PlayerShooting : MonoBehaviour
 
     private void Start()
     {
-        ammoCount = weapon.maxMagazine;
+        ammoMagCount = weapon.maxMagazine;
     }
 
     private void Update()
@@ -89,54 +91,52 @@ public class PlayerShooting : MonoBehaviour
     {
         if (context.performed && !isPaused)
         {
-            if (isPC)
+            if (ammoMagCount > 0)
             {
-                if (weapon.weapon == weaponType.bubblegun)
+                ammoMagCount--;
+                if (isPC)
                 {
-                    GameObject projectile = Instantiate(weapon.prefab, transform.position, transform.rotation * Quaternion.Euler(0,90,0));
+                    GameObject projectile = Instantiate(weapon.prefab, transform.position, transform.rotation);
                     Rigidbody rb = projectile.GetComponent<Rigidbody>();
                     Weapon bullet = projectile.GetComponent<Weapon>();
                     projectile.layer = LayerMask.NameToLayer("P_bullet");
                     bullet.damage = weapon.damage;
-                    rb.AddForce(transform.forward * weapon.bulletSpeed, ForceMode.Impulse);
-                    Destroy(projectile, 5f);
-                    ammoCount--;
-                }
-                else if (weapon.weapon == weaponType.waterBalloon)
-                {
+                    if (weapon.weapon == weaponType.bubblegun)
+                    {
+                        rb.AddForce(transform.forward * weapon.bulletSpeed, ForceMode.Impulse);
+                        Destroy(projectile, 5f);
+                    }
+                    else if (weapon.weapon == weaponType.waterBalloon)
+                    {
 
+                    }
+                }
+                else
+                {
+                    GameObject projectile = Instantiate(weapon.prefab, transform.position, transform.rotation);
+                    Rigidbody rb = projectile.GetComponent<Rigidbody>();
+                    Weapon bullet = projectile.GetComponent<Weapon>();
+                    projectile.layer = LayerMask.NameToLayer("P_bullet");
+                    bullet.damage = weapon.damage;
+                    if (weapon.weapon == weaponType.bubblegun)
+                    {
+                        rb.AddForce(transform.forward * weapon.bulletSpeed, ForceMode.Impulse);
+                        Destroy(projectile, 5f);
+                    }
+                    else if (weapon.weapon == weaponType.waterBalloon)
+                    {
+                    }
                 }
             }
             else
             {
-                if (weapon.weapon == weaponType.bubblegun)
-                {
-                    GameObject projectile = Instantiate(weapon.prefab, transform.position, transform.rotation);
-                    Rigidbody rb = projectile.GetComponent<Rigidbody>();
-                    Weapon bullet = projectile.GetComponent<Weapon>();
-                    projectile.layer = LayerMask.NameToLayer("P_bullet");
-                    bullet.damage = weapon.damage;
-                    rb.AddForce(transform.forward * weapon.bulletSpeed, ForceMode.Impulse);
-                    Destroy(projectile, 5f);
-                    ammoCount--;
-                }
-                else if (weapon.weapon == weaponType.waterBalloon)
-                {
-                    GameObject projectile = Instantiate(weapon.prefab, transform.position, transform.rotation);
-                    Rigidbody rb = projectile.GetComponent<Rigidbody>();
-                    Weapon balloon = projectile.GetComponent<Weapon>();
-                    projectile.layer = LayerMask.NameToLayer("P_bullet");
-                    balloon.damage = weapon.damage;
-                }
+                Reload(context);
             }
         }
     }
 
-    private void Reload()
+    public void Reload(InputAction.CallbackContext context)
     {
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            ammoCount = weapon.maxMagazine;
-        }
+        ammoMagCount = weapon.maxMagazine;
     }
 }
