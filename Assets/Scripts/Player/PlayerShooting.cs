@@ -96,7 +96,7 @@ public class PlayerShooting : MonoBehaviour
                 ammoMagCount--;
                 if (isPC)
                 {
-                    GameObject projectile = Instantiate(weapon.prefab, transform.position, transform.rotation);
+                    GameObject projectile = Instantiate(weapon.prefab, transform.position, transform.rotation * Quaternion.Euler(0,90,0));
                     Rigidbody rb = projectile.GetComponent<Rigidbody>();
                     Weapon bullet = projectile.GetComponent<Weapon>();
                     projectile.layer = LayerMask.NameToLayer("P_bullet");
@@ -113,7 +113,7 @@ public class PlayerShooting : MonoBehaviour
                 }
                 else
                 {
-                    GameObject projectile = Instantiate(weapon.prefab, transform.position, transform.rotation);
+                    GameObject projectile = Instantiate(weapon.prefab, transform.position, transform.rotation * Quaternion.Euler(0, 90, 0));
                     Rigidbody rb = projectile.GetComponent<Rigidbody>();
                     Weapon bullet = projectile.GetComponent<Weapon>();
                     projectile.layer = LayerMask.NameToLayer("P_bullet");
