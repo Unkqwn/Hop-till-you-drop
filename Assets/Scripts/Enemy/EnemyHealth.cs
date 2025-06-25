@@ -59,14 +59,16 @@ public class EnemyHealth : MonoBehaviour
             Vector3 bloodPos = new Vector3(transform.position.x, hit.point.y, transform.position.z);
             GameObject blood = Instantiate(bloodstain, bloodPos, Quaternion.identity);
 
+
             if (gameObject.tag == "Boss")
             {
                 finalBlow();
             }
 
-
+            IncrementScore();
+            Debug.Log("Score added");
             Destroy(this.gameObject);
-            EXP.score++;
+         
         }
     }
 
@@ -82,6 +84,11 @@ public class EnemyHealth : MonoBehaviour
     private void finalBlow()
     {
         GetComponent<BossEnemyScript>().SpawnProjectiles(25);
+    }
+
+    private void IncrementScore()
+    {
+        player.gameObject.GetComponent<PlayerLevel>().score++;
     }
 
     

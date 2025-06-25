@@ -5,7 +5,7 @@ using UnityEngine;
 public class stayOnGround : MonoBehaviour
 {
 
-    private float startHeight = 0.5f;
+    
     private GameObject player;
 
     // Start is called before the first frame update
