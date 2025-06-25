@@ -139,19 +139,19 @@ public class StrongEnemyScript : MonoBehaviour
         //left
         Rigidbody rb = Instantiate(homingBullet, left.transform.position, left.transform.rotation).GetComponent<Rigidbody>();
         rb.AddForce(rb.transform.forward * 20f, ForceMode.Impulse);
-        //Destroy(rb.gameObject, 10f);
+            Destroy(rb.gameObject, 10f);
 
-        Rigidbody rb2 = Instantiate(bullet, middle.transform.position, Quaternion.identity).GetComponent<Rigidbody>();
+            Rigidbody rb2 = Instantiate(bullet, middle.transform.position, Quaternion.identity).GetComponent<Rigidbody>();
         rb2.AddForce(transform.forward * 10f, ForceMode.Impulse);
-        //Destroy(rb2.gameObject, 10f);
+            Destroy(rb2.gameObject, 10f);
 
-        Rigidbody rb3 = Instantiate(homingBullet, right.transform.position, right.transform.rotation).GetComponent<Rigidbody>();
+            Rigidbody rb3 = Instantiate(homingBullet, right.transform.position, right.transform.rotation).GetComponent<Rigidbody>();
         rb3.AddForce(rb3.transform.forward * 20f, ForceMode.Impulse);
-        //Destroy(rb3.gameObject, 10f);
+            Destroy(rb3.gameObject, 10f);
 
-        
 
-        alreadyAttacked = true;
+
+            alreadyAttacked = true;
         Invoke(nameof(ResetAttack), timeBetweenAttacks);
         }
     }

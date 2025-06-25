@@ -9,6 +9,8 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField]
     private GameObject BossObject;
 
+    public bool gameIsDone = true;
+
     [SerializeField] private List<GameObject> enemies = new List<GameObject>();
 
     public  GameObject newEnemy;
@@ -30,8 +32,8 @@ public class EnemySpawner : MonoBehaviour
     void Start()
     {
         playerToFollow = GameObject.FindGameObjectWithTag("Player");
-        InvokeRepeating("SpawnNewEnemy", SpawnDelay, SpawnRate);
-
+        //InvokeRepeating("SpawnNewEnemy", SpawnDelay, SpawnRate);
+        StartCoroutine(spawning(5));
     }
 
     // Update is called once per frame
@@ -41,6 +43,17 @@ public class EnemySpawner : MonoBehaviour
         {
             transform.position = playerToFollow.transform.position;
         }
+    }
+
+    private IEnumerator spawning(float waitTime)
+    {
+        if (gameIsDone == true)
+        {
+            SpawnNewEnemy();
+            yield return new WaitForSeconds(waitTime);
+            StartCoroutine(spawning(5));
+        }
+        
     }
 
     private void SpawnNewEnemy()
@@ -77,5 +90,9 @@ public class EnemySpawner : MonoBehaviour
 
     }
 
+    public void StopSpawning()
+    {
+        gameIsDone = false;
+    }
   
 }
