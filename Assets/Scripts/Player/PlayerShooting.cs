@@ -3,7 +3,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerShooting : MonoBehaviour
 {
-    [SerializeField] private WeaponStats weapon;
+    [SerializeField] public WeaponStats weapon;
     
     public int ammoCount;
     private int ammoMagCount;

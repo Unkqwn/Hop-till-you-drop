@@ -6,14 +6,19 @@ public class EnemyHealth : MonoBehaviour
     [SerializeField] private PlayerLevel EXP;
 
     const float dropChance = 1f / 3f;
+    const float ammoDropChance = 1f / 2f;
     public GameObject heartPickup;
+    public GameObject ammoPickup;
+    private Vector3 ammoOffset;
     private Vector3 heartOffset;
 
     private void Start()
     {
         EXP = FindAnyObjectByType<PlayerLevel>();
         heartOffset = new Vector3(transform.position.x, 2, transform.position.z);
-    }
+        ammoOffset = new Vector3(transform.position.x, 2, transform.position.z);
+    
+}
 
     void Update()
     {
@@ -25,7 +30,13 @@ public class EnemyHealth : MonoBehaviour
 
             }
 
-            if(gameObject.tag == "Boss")
+            if (Random.Range(0f, 1f) <= ammoDropChance)
+            {
+                GameObject hp = Instantiate(ammoPickup, heartOffset, Quaternion.identity);
+
+            }
+
+            if (gameObject.tag == "Boss")
             {
                 finalBlow();
             }

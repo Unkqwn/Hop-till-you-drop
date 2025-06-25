@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class WatergunPickup : MonoBehaviour
 {
-    public GameObject Watagun;
+    public WeaponStats Watagun;
     // Start is called before the first frame update
     void Start()
     {
@@ -21,7 +21,7 @@ public class WatergunPickup : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            
+            other.gameObject.GetComponent<PlayerShooting>().weapon = Watagun;
             Destroy(this.gameObject);
         }
     }
