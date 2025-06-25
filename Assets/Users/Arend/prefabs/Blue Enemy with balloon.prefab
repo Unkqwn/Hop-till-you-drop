@@ -261,6 +261,7 @@ MonoBehaviour:
   health: 3
   EXP: {fileID: 0}
   heartPickup: {fileID: 7839278160962245014, guid: 2b5f94d73d49a8c48b4dfd29efc79a0d, type: 3}
+  ammoPickup: {fileID: 6294023223404216071, guid: 2d5212c78eb635b4eae992dfd7466d9b, type: 3}
 --- !u!4 &715883022482598852 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: b80e975817d643141bc5b66b3f555de2, type: 3}

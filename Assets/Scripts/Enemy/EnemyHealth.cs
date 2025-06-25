@@ -11,12 +11,14 @@ public class EnemyHealth : MonoBehaviour
     public GameObject ammoPickup;
     private Vector3 ammoOffset;
     private Vector3 heartOffset;
+    private GameObject player;
 
     private void Start()
     {
+        player = GameObject.FindGameObjectWithTag("Player");
         EXP = FindAnyObjectByType<PlayerLevel>();
-        heartOffset = new Vector3(transform.position.x, 2, transform.position.z);
-        ammoOffset = new Vector3(transform.position.x, 2, transform.position.z);
+        
+        
     
 }
 
@@ -26,13 +28,15 @@ public class EnemyHealth : MonoBehaviour
         {
             if (Random.Range(0f,1f) <= dropChance)
             {
+                Vector3 heartOffset = new Vector3(transform.position.x, player.transform.position.y, transform.position.z);
                 GameObject hp = Instantiate(heartPickup, heartOffset, Quaternion.identity);
 
             }
 
             if (Random.Range(0f, 1f) <= ammoDropChance)
             {
-                GameObject hp = Instantiate(ammoPickup, heartOffset, Quaternion.identity);
+                Vector3 ammoOffset = new Vector3(transform.position.x, player.transform.position.y, transform.position.z);
+                GameObject ap = Instantiate(ammoPickup, ammoOffset, Quaternion.identity);
 
             }
 

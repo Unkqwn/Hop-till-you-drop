@@ -124,6 +124,9 @@ MonoBehaviour:
   WaitAtPoint: 2
   timeBetweenAttacks: 0.5
   bullet: {fileID: 5040537829499498140, guid: 30ad8b600bbc06f4c834821de47c04a5, type: 3}
+  shootingDirLeft: {fileID: 0}
+  shootingDirRight: {fileID: 0}
+  forwardDir: {fileID: 0}
   CurrentState: 0
   ChaseRange: 50
   AttackRange: 10
@@ -140,6 +143,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 1
+  EXP: {fileID: 0}
+  heartPickup: {fileID: 0}
+  ammoPickup: {fileID: 6294023223404216071, guid: 2d5212c78eb635b4eae992dfd7466d9b, type: 3}
 --- !u!135 &8648265795425374678
 SphereCollider:
   m_ObjectHideFlags: 0
