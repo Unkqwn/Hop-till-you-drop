@@ -25,6 +25,11 @@ public class EnemyHealth : MonoBehaviour
 
             }
 
+            if(gameObject.tag == "Boss")
+            {
+                finalBlow();
+            }
+
 
             Destroy(this.gameObject);
             EXP.score++;
@@ -39,4 +44,11 @@ public class EnemyHealth : MonoBehaviour
             health -= damage;
         }
     }
+
+    private void finalBlow()
+    {
+        GetComponent<BossEnemyScript>().SpawnProjectiles(25);
+    }
+
+    
 }
