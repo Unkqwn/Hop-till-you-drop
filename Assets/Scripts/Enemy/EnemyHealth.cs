@@ -12,6 +12,8 @@ public class EnemyHealth : MonoBehaviour
     private Vector3 ammoOffset;
     private Vector3 heartOffset;
     private GameObject player;
+    public LayerMask layerMask;
+    public GameObject bloodstain;
 
     private void Start()
     {
@@ -39,6 +41,23 @@ public class EnemyHealth : MonoBehaviour
                 GameObject ap = Instantiate(ammoPickup, ammoOffset, Quaternion.identity);
 
             }
+
+            RaycastHit hit;
+
+            if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.down), out hit, Mathf.Infinity, layerMask))
+
+            {
+                Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * hit.distance, Color.yellow);
+                Debug.Log("Did Hit");
+            }
+            else
+            {
+                Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * 1000, Color.white);
+                Debug.Log("Did not Hit");
+            }
+
+            Vector3 bloodPos = new Vector3(transform.position.x, hit.point.y, transform.position.z);
+            GameObject blood = Instantiate(bloodstain, bloodPos, Quaternion.identity);
 
             if (gameObject.tag == "Boss")
             {
