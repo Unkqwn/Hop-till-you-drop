@@ -2,15 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HeartPickup : MonoBehaviour
+public class AmmoPickup : MonoBehaviour
 {
-
-    public GameObject player;
-
     // Start is called before the first frame update
     void Start()
     {
-       
+        
     }
 
     // Update is called once per frame
@@ -23,7 +20,7 @@ public class HeartPickup : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            other.GetComponent<PlayerHealth>().health++;
+            other.gameObject.GetComponent<PlayerShooting>().ammoCount++;
             Destroy(this.gameObject);
         }
     }

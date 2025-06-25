@@ -23,6 +23,7 @@ public class StrongEnemyScript : MonoBehaviour
 
     public float timeBetweenAttacks;
     public GameObject bullet;
+    public GameObject homingBullet;
     public GameObject left;
     public GameObject middle;
     public GameObject right;
@@ -136,16 +137,16 @@ public class StrongEnemyScript : MonoBehaviour
         if (!alreadyAttacked) { 
        
         //left
-        Rigidbody rb = Instantiate(bullet, left.transform.position, left.transform.rotation).GetComponent<Rigidbody>();
-        rb.AddForce(rb.transform.forward * 25f, ForceMode.Impulse);
+        Rigidbody rb = Instantiate(homingBullet, left.transform.position, left.transform.rotation).GetComponent<Rigidbody>();
+        rb.AddForce(rb.transform.forward * 20f, ForceMode.Impulse);
         //Destroy(rb.gameObject, 10f);
 
         Rigidbody rb2 = Instantiate(bullet, middle.transform.position, Quaternion.identity).GetComponent<Rigidbody>();
         rb2.AddForce(transform.forward * 10f, ForceMode.Impulse);
         //Destroy(rb2.gameObject, 10f);
 
-        Rigidbody rb3 = Instantiate(bullet, right.transform.position, right.transform.rotation).GetComponent<Rigidbody>();
-        rb3.AddForce(rb3.transform.forward * 25f, ForceMode.Impulse);
+        Rigidbody rb3 = Instantiate(homingBullet, right.transform.position, right.transform.rotation).GetComponent<Rigidbody>();
+        rb3.AddForce(rb3.transform.forward * 20f, ForceMode.Impulse);
         //Destroy(rb3.gameObject, 10f);
 
         

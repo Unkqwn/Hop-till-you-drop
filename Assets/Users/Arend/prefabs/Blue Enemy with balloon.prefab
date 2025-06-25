@@ -190,8 +190,8 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 1.5192277
-  m_Speed: 3.5
-  m_Acceleration: 8
+  m_Speed: 2.5
+  m_Acceleration: 100
   avoidancePriority: 50
   m_AngularSpeed: 120
   m_StoppingDistance: 0
@@ -218,6 +218,7 @@ MonoBehaviour:
   WaitAtPoint: 2
   timeBetweenAttacks: 5
   bullet: {fileID: 5248878727472248988, guid: 365a6fdd6f9977743af6127c904f0d58, type: 3}
+  homingBullet: {fileID: 2248043556468475963, guid: 3f049db6ec1ddd242ae83873d149e188, type: 3}
   left: {fileID: 8464447399026984649}
   middle: {fileID: 17571386763083285}
   right: {fileID: 1439088666829960760}
@@ -257,7 +258,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b2bad85e872fe74fa43147af74dc483, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 1
+  health: 3
+  EXP: {fileID: 0}
+  heartPickup: {fileID: 7839278160962245014, guid: 2b5f94d73d49a8c48b4dfd29efc79a0d, type: 3}
 --- !u!4 &715883022482598852 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: b80e975817d643141bc5b66b3f555de2, type: 3}
