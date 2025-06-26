@@ -7,10 +7,13 @@ public class Weapon : MonoBehaviour
 {
     public float damage;
 
+    private Rigidbody rb;
+
     private float yStart;
 
     private void Start()
     {
+        rb = GetComponent<Rigidbody>();
         yStart = transform.position.y;
     }
 
