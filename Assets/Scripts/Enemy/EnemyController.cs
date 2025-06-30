@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -137,7 +138,13 @@ public class EnemyController : MonoBehaviour
                     agent.SetDestination(player.transform.position);
                     AttackPlayer();
                 }
-                
+
+                if (distanceToPlayer > AttackRange)
+                {
+                    CurrentState = AIState.Chasing;
+
+                }
+
                 break;
 
         }
@@ -149,7 +156,12 @@ public class EnemyController : MonoBehaviour
 
         //transform.forward = new Vector3(forwardDir.transform.forward.x, transform.forward.y, forwardDir.transform.forward.z);
         //Debug.DrawRay(transform.position, transform.forward, Color.red);
-        transform.LookAt(player.transform.position);
+        
+        Vector3 lookat;
+        lookat = new Vector3(transform.eulerAngles.x, 0, transform.eulerAngles.z);
+        transform.LookAt(player.transform.position + lookat);
+
+        agent.isStopped = true;
 
         if (!alreadyAttacked)
         {
