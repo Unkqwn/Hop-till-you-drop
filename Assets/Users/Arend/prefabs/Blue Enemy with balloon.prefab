@@ -264,7 +264,7 @@ MonoBehaviour:
   ammoPickup: {fileID: 6294023223404216071, guid: 2d5212c78eb635b4eae992dfd7466d9b, type: 3}
   layerMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 32768
   bloodstain: {fileID: 1682459527871952342, guid: f1935cbb82eea25478844e2399786b89, type: 3}
 --- !u!4 &715883022482598852 stripped
 Transform:
