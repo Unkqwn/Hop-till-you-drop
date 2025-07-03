@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3097516977795bb4587996245d3712a3, type: 3}
-  m_Name: bubblegun
+  m_Name: WaterBalloon
   m_EditorClassIdentifier: 
-  weapon: 0
-  prefab: {fileID: 7191342489899238252, guid: 13c5bb1639ffa7341abacbcf08af2b0b, type: 3}
-  maxMagazine: 6
-  damage: 1
-  bulletSpeed: 20
-  fireRate: 0.1
+  weapon: 1
+  prefab: {fileID: 6859049539872663284, guid: b2e0b37e9d153774299897a62963f590, type: 3}
+  maxMagazine: 1
+  damage: 5
+  bulletSpeed: 10
+  fireRate: 1

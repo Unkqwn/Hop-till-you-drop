@@ -28,5 +28,6 @@ public class Weapon : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
+
     }
 }

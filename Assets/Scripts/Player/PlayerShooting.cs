@@ -5,23 +5,19 @@ using UnityEngine.UI;
 
 public class PlayerShooting : MonoBehaviour
 {
-    public WeaponStats weapon;
-    
-    public int ammoCount;
-    private int ammoMagCount;
-
     [SerializeField] private float rotateSpeed;
     [SerializeField] private bool isPC;
     private Vector2 mouseLook, joystickLook;
     private Vector3 rotationTarget;
 
-    public bool isPaused;
+    public WeaponStats weapon;
 
-    [SerializeField] private GameObject ammoPrefab;
-    [SerializeField] private GameObject ammoParent;
-    [SerializeField] private Sprite fullHeart;
-    [SerializeField] private Sprite emptyHeart;
-    [SerializeField] private List<Image> ammoImage = new List<Image>();
+    public int ammoCount;
+    private bool canShoot = true;
+    private int ammoMagCount;
+    private float firerate;
+
+    public bool isPaused;
 
     public void OnMouseLook(InputAction.CallbackContext context)
     {
@@ -34,12 +30,8 @@ public class PlayerShooting : MonoBehaviour
 
     private void Start()
     {
-        ammoMagCount = weapon.maxMagazine; 
-        /*for (int i = 0; i < weapon.maxMagazine; i++)
-        {
-            GameObject heart = Instantiate(ammoPrefab, ammoParent.transform);
-            ammoImage.Add(heart.GetComponent<Image>());
-        }*/
+        ammoMagCount = weapon.maxMagazine;
+        firerate = weapon.fireRate;
     }
 
     private void Update()
@@ -102,10 +94,11 @@ public class PlayerShooting : MonoBehaviour
 
     public void Shoot(InputAction.CallbackContext context)
     {
-        if (context.performed && !isPaused)
+        if (context.performed && !isPaused && canShoot)
         {
             if (ammoMagCount > 0)
             {
+                canShoot = false;
                 ammoMagCount--;
                 if (isPC)
                 {
@@ -114,15 +107,8 @@ public class PlayerShooting : MonoBehaviour
                     Weapon bullet = projectile.GetComponent<Weapon>();
                     projectile.layer = LayerMask.NameToLayer("P_bullet");
                     bullet.damage = weapon.damage;
-                    if (weapon.weapon == weaponType.bubblegun)
-                    {
                         rb.AddForce(transform.forward * weapon.bulletSpeed, ForceMode.Impulse);
                         Destroy(projectile, 5f);
-                    }
-                    else if (weapon.weapon == weaponType.waterBalloon)
-                    {
-
-                    }
                 }
                 else
                 {
@@ -131,16 +117,10 @@ public class PlayerShooting : MonoBehaviour
                     Weapon bullet = projectile.GetComponent<Weapon>();
                     projectile.layer = LayerMask.NameToLayer("P_bullet");
                     bullet.damage = weapon.damage;
-                    if (weapon.weapon == weaponType.bubblegun)
-                    {
-                        rb.AddForce(transform.forward * weapon.bulletSpeed, ForceMode.Impulse);
-                        Destroy(projectile, 5f);
-                    }
-                    else if (weapon.weapon == weaponType.waterBalloon)
-                    {
-                    }
+                    rb.AddForce(transform.forward * weapon.bulletSpeed, ForceMode.Impulse);
+                    Destroy(projectile, 5f);
                 }
-                //ammoUpdate();
+                Invoke(nameof(ResetShoot), firerate);
             }
             else
             {
@@ -149,13 +129,13 @@ public class PlayerShooting : MonoBehaviour
         }
     }
 
+    private void ResetShoot()
+    {
+        canShoot = true;
+    }
+
     public void Reload(InputAction.CallbackContext context)
     {
         ammoMagCount = weapon.maxMagazine;
-    }
-
-    private void ammoUpdate()
-    {
-        
     }
 }
