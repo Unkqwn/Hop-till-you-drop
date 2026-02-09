@@ -40,10 +40,9 @@ public class PlayerShooting : MonoBehaviour
 
     private void SpawnProjectile()
     {
-        GameObject projectile = Instantiate(weapon.prefab, transform.position, transform.rotation * Quaternion.Euler(0, 90, 0));
+        GameObject projectile = Instantiate(weapon.prefab, transform.position, transform.rotation);
         Rigidbody rb = projectile.GetComponent<Rigidbody>();
         Weapon bullet = projectile.GetComponent<Weapon>();
-        projectile.layer = LayerMask.NameToLayer("P_bullet");
         bullet.damage = weapon.damage;
         rb.AddForce(transform.forward * weapon.bulletSpeed, ForceMode.Impulse);
         Destroy(projectile, 5f);

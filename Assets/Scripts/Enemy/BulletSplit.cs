@@ -49,10 +49,6 @@ public class BulletSplit : MonoBehaviour
 
             GameObject tmpObj = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
             tmpObj.GetComponent<Rigidbody>().velocity = new Vector3(projectileMoveDirection.x, 0, projectileMoveDirection.z);
-            
-
-
-            tmpObj.gameObject.layer = LayerMask.NameToLayer("E_bullet");
 
             angle += angleStep;
             Destroy(tmpObj,10);

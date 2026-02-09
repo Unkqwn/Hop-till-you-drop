@@ -3,10 +3,10 @@ using UnityEngine.InputSystem;
 
 public class PlayerAim : MonoBehaviour
 {
-    [SerializeField] private float rotateSpeed;
-    [SerializeField] private bool isPC;
-    private Vector2 mouseLook, joystickLook;
-    private Vector3 rotationTarget;
+    [SerializeField] private float rotateSpeed = 10f;
+    [SerializeField] private LayerMask aimLayerMask;
+
+    private Vector2 joystickLook, mouseLook;
 
     public bool isPaused;
 
@@ -14,6 +14,7 @@ public class PlayerAim : MonoBehaviour
     {
         mouseLook = context.ReadValue<Vector2>();
     }
+
     public void OnJoystickLook(InputAction.CallbackContext context)
     {
         joystickLook = context.ReadValue<Vector2>();
@@ -21,59 +22,33 @@ public class PlayerAim : MonoBehaviour
 
     private void Update()
     {
-        if (Gamepad.all.Count > 0)
+        if (joystickLook.sqrMagnitude > 0.01f)
         {
-            isPC = false;
+            AimAt(new Vector3(joystickLook.x, 0f, joystickLook.y));
         }
         else
         {
-            isPC = true;
-        }
+            Vector2 mousePos = Mouse.current.position.ReadValue();
+            Ray ray = Camera.main.ScreenPointToRay(mousePos);
 
-        if (!isPaused)
-        {
-            if (isPC)
+            if (Physics.Raycast(ray, out RaycastHit hit, 100f, aimLayerMask))
             {
-                RaycastHit hit;
-                Ray ray = Camera.main.ScreenPointToRay(mouseLook);
-
-                if (Physics.Raycast(ray, out hit))
-                {
-                    rotationTarget = hit.point;
-                }
-
-                playerAim();
-            }
-            else
-            {
-                playerAim();
+                AimAt(hit.point - transform.position);
             }
         }
     }
 
-    public void playerAim()
+    private void AimAt(Vector3 dir)
     {
-        if (isPC)
+        dir.y = 0f;
+
+        if (dir.sqrMagnitude < 0.01f)
         {
-            var lookPos = rotationTarget - transform.position;
-            lookPos.y = 0;
-            var rotation = Quaternion.LookRotation(lookPos);
-
-            Vector3 aimDirection = new Vector3(rotationTarget.x, 0f, rotationTarget.z);
-
-            if (aimDirection != Vector3.zero)
-            {
-                transform.rotation = Quaternion.Slerp(transform.rotation, rotation, rotateSpeed);
-            }
+            return;
         }
-        else
-        {
-            Vector3 aimDirection = new Vector3(joystickLook.x, 0f, joystickLook.y);
 
-            if (aimDirection != Vector3.zero)
-            {
-                transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(aimDirection), rotateSpeed);
-            }
-        }
+        Quaternion targetRot = Quaternion.LookRotation(dir);
+
+        transform.rotation = Quaternion.Slerp(transform.rotation, targetRot, rotateSpeed * Time.deltaTime);
     }
 }
