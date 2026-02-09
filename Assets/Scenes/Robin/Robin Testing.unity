@@ -134081,9 +134081,9 @@ GameObject:
   m_Component:
   - component: {fileID: 3309127457330005031}
   - component: {fileID: 2872039429821921466}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Ground
-  m_TagString: Respawn
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -302124,7 +302124,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 9165079670162330779}
         m_TargetAssemblyTypeName: PlayerAim, Assembly-CSharp
-        m_MethodName: OnJoystickLook
+        m_MethodName: OnMouseLook
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
