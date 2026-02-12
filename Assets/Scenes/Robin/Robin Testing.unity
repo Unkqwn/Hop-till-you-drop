@@ -6514,23 +6514,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &79993679509064023
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7607939036369709268}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3558bc88cb1424b47a51d4dfe4f8ea9e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  scoreText: {fileID: 1157622321}
-  score: 0
-  boss: {fileID: 0}
-  bossSpawnArea: {fileID: 0}
-  gameManager: {fileID: 0}
 --- !u!4 &81661169906095259
 Transform:
   m_ObjectHideFlags: 0
@@ -302106,7 +302089,7 @@ MonoBehaviour:
   m_ActionEvents:
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7972064146233351534}
+      - m_Target: {fileID: 9165079670162330782}
         m_TargetAssemblyTypeName: PlayerMovement, Assembly-CSharp
         m_MethodName: OnMove
         m_Mode: 0
@@ -302202,9 +302185,9 @@ MonoBehaviour:
     m_ActionName: Player/New action
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7972064146233351534}
-        m_TargetAssemblyTypeName: PlayerMovement, Assembly-CSharp
-        m_MethodName: Dash
+      - m_Target: {fileID: 9165079670162330781}
+        m_TargetAssemblyTypeName: DashMovement, Assembly-CSharp
+        m_MethodName: OnDash
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -534137,10 +534120,11 @@ GameObject:
   - component: {fileID: 2746703102434675024}
   - component: {fileID: 4151970380896261908}
   - component: {fileID: 9165079670162330778}
-  - component: {fileID: 7972064146233351534}
   - component: {fileID: 1003102679116990898}
-  - component: {fileID: 79993679509064023}
   - component: {fileID: 9165079670162330779}
+  - component: {fileID: 9165079670162330782}
+  - component: {fileID: 9165079670162330781}
+  - component: {fileID: 9165079670162330780}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -564148,21 +564132,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 5642142870292064786}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7972064146233351534
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7607939036369709268}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 46dccd36307e0b042a09ad1591c079f0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 10
-  dashSpeed: 10
-  dashIcon: {fileID: 237404710}
 --- !u!23 &7972260085196264869
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -643686,6 +643655,44 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   isPaused: 0
+--- !u!114 &9165079670162330780
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7607939036369709268}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c574df11ba2764649920405c25d97939, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &9165079670162330781
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7607939036369709268}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39e415753deb78d4f92200c47b59cd95, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dashForce: 10
+--- !u!114 &9165079670162330782
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7607939036369709268}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e28f68219f8323644b4db0c9821dcd0a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  baseSpeed: 2
 --- !u!1 &9165581757495145897
 GameObject:
   m_ObjectHideFlags: 0
