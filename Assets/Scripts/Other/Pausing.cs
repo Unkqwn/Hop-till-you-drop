@@ -1,24 +1,21 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using static UnityEngine.UIElements.UxmlAttributeDescription;
 using UnityEngine.SceneManagement;
 
 public class Pausing : MonoBehaviour
 {
-    [SerializeField] private bool isPaused = false;
     [SerializeField] private GameObject pauseMenu;
-    private PlayerShooting pShoot;
+
+    private GameManager gameManager;
 
     private void Start()
     {
-        pShoot = GameObject.FindWithTag("Player").GetComponent<PlayerShooting>();
+        gameManager = GameManager.Instance;
     }
 
     private void Update()
     {
-        if (isPaused)
+        if (gameManager.isGamePaused)
         {
             Time.timeScale = 0f;
         }
@@ -26,21 +23,20 @@ public class Pausing : MonoBehaviour
         {
             Time.timeScale = 1f;
         }
-        pShoot.isPaused = isPaused;
-        pauseMenu.SetActive(isPaused);
+        pauseMenu.SetActive(gameManager.isGamePaused);
     }
 
     public void OnPause(InputAction.CallbackContext context)
     {
         if (context.performed)
         {
-            isPaused = !isPaused;
+            gameManager.isGamePaused = !gameManager.isGamePaused;
         }
     }
 
     public void ResumeButton()
     {
-        isPaused = false;
+        gameManager.isGamePaused = false;
     }
 
     public void RestartButton()

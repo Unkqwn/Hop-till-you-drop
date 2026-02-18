@@ -3,7 +3,6 @@ using UnityEngine;
 public class EnemyHealth : MonoBehaviour
 {
     [SerializeField] private float health;
-    [SerializeField] private PlayerLevel EXP;
 
     const float dropChance = 1f / 5f;
     const float ammoDropChance = 1f / 5f;
@@ -18,17 +17,16 @@ public class EnemyHealth : MonoBehaviour
     private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
-        EXP = FindAnyObjectByType<PlayerLevel>();
-        
-        
-    
-}
+
+
+
+    }
 
     void Update()
     {
         if (health <= 0)
         {
-            if (Random.Range(0f,1f) <= dropChance)
+            if (Random.Range(0f, 1f) <= dropChance)
             {
                 Vector3 heartOffset = new Vector3(transform.position.x, player.transform.position.y, transform.position.z);
                 GameObject hp = Instantiate(heartPickup, heartOffset, Quaternion.identity);
@@ -65,10 +63,9 @@ public class EnemyHealth : MonoBehaviour
                 finalBlow();
             }
 
-            IncrementScore();
             Debug.Log("Score added");
             Destroy(this.gameObject);
-         
+
         }
     }
 
@@ -76,7 +73,7 @@ public class EnemyHealth : MonoBehaviour
     {
         if (other.gameObject.layer == 7)
         {
-            float damage = other.GetComponent<Weapon>().damage;
+            float damage = other.GetComponent<Bullet>().damage;
             health -= damage;
         }
     }
@@ -85,11 +82,4 @@ public class EnemyHealth : MonoBehaviour
     {
         GetComponent<BossEnemyScript>().SpawnProjectiles(25);
     }
-
-    private void IncrementScore()
-    {
-        player.gameObject.GetComponent<PlayerLevel>().score++;
-    }
-
-    
 }
